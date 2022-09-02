@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from '../../components/auth/login';
+import Logout from '../../components/auth/logout';
 import SignUp from '../../components/auth/signUp';
 import CreateCourse from '../../components/courses/createCourse/createCourse';
 import MyCourses from '../../components/courses/myCourses/myCourses';
@@ -15,6 +16,7 @@ const AppRoutes = () => {
                     <Route index element={<Home />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/signUp' element={<SignUp />} />
+                    <Route path='/logout' element={<Logout />} />
                     <Route path='/createCourse' element={<CreateCourse />} /> 
                     <Route path='/myCourses' element={<MyCourses />} />
                     <Route path='/showCourse' element={<ShowCourse />} />
