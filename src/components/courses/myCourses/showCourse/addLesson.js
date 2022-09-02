@@ -5,7 +5,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { ReactFileInputCustom } from "react-file-input-custom";
 import { Button } from "@mui/material";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { ADD_LESSON_ROUTE } from "../../../../shared/constant/url";
 import { apiPost } from "../../../../shared/services/services";
 import useSimpleForm from "../../../../shared/hooks/useForm";
@@ -33,7 +33,17 @@ const AddLesson = ({ render, setShowAdd }) => {
   const [query] = useSearchParams();
   let errorsObj = {}
   const [form, setForm, errors, setErrors, resetForm] = useSimpleForm({ name: "", info: "", link: "" })
-
+// submiting
+  const onSub = (e) => {
+    e.preventDefault();
+    valid()
+    if (errorsObj.name || errorsObj.info || errorsObj.link) {
+      return
+    }
+    addLesson(query.get("shortId"), form);
+    render(query.get("shortId"))
+  };
+  // doing validation
   const valid = () => {
     if (!form.name || form.name.length > 40)
       errorsObj.name = "שם אינו תקין";
@@ -43,17 +53,7 @@ const AddLesson = ({ render, setShowAdd }) => {
       errorsObj.link = "לינק אינו תקין";
     setErrors(errorsObj)
   }
-  const onSub = (e) => {
-    e.preventDefault();
-    valid()
-    if (errorsObj.name || errorsObj.info || errorsObj.link) {
-      return
-    }
-    
-    addLesson(query.get("shortId"), form);
-    render(query.get("shortId"))
-  };
-
+// adding request
   const addLesson = async (shortId, data) => {
     data.link=fixSrcString(data.link);
     let resp = await apiPost(
@@ -63,7 +63,6 @@ const AddLesson = ({ render, setShowAdd }) => {
     setShowAdd(false);
     render(shortId)
   };
-
 
   return (
     <div

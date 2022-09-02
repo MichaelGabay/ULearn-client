@@ -5,9 +5,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Delete } from "@mui/icons-material";
 import { ReactFileInputCustom } from "react-file-input-custom";
 import { Button } from "@mui/material";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useState } from "react";
 import { apiDelete, apiPut } from "../../../../shared/services/services";
 import {
   DELETE_LESSON_ROUTE,
@@ -41,10 +40,6 @@ const EditLesson = ({ lesson, render, setShowEdit }) => {
     link: "",
   });
 
-  // data to form
-  // const [form, setform] = useState(lesson);
-  // // errors to form
-  // const [error, setError] = useState({});
   let errosObj = {};
   //render component for update default values on input
   useEffect(() => {
@@ -60,34 +55,19 @@ const EditLesson = ({ lesson, render, setShowEdit }) => {
     render(query.get("shortId"));
     setShowEdit(false);
   };
+  //  doing validation
+  useEffect(() => {
+    valid();
+  }, [form]);
 
-  //updating
-  const updatCourse = async (data) => {
-    let resp = await apiPut(
-      UPDATE_LESSON_ROUTE +
-      `?courseShortId=${query.get("shortId")}&lessonId=${lesson._id}`,
-      data
-    );
-    render(query.get("shortId"));
-    setShowEdit(false);
-  };
-
-  //must Sprayd operetor!!!
-  //make validetion in any change on inputs
   const valid = () => {
     if (!form.name || form.name.length > 40) errosObj.name = "שם אינו תקין";
-
     if (form.info?.length > 180) errosObj.info = "תיאור אינו תקין";
     if (!form.link || form.link.length > 2000) errosObj.link = "לינק אינו תקין";
     if (lesson === form) errosObj.equal = "אין שינויים";
     setErrors(errosObj);
   };
-
-  //render valid messages of inputs
-  useEffect(() => {
-    valid();
-  }, [form]);
-
+  // submiting
   const onSubmit = (e) => {
     e.preventDefault();
     if (errors.equal) {
@@ -100,17 +80,24 @@ const EditLesson = ({ lesson, render, setShowEdit }) => {
     bodyData.link = fixSrcString(bodyData.link)
     updatCourse(bodyData);
   };
+  //updating
+  const updatCourse = async (data) => {
+    let resp = await apiPut(
+      UPDATE_LESSON_ROUTE +
+      `?courseShortId=${query.get("shortId")}&lessonId=${lesson._id}`,
+      data
+    );
+    render(query.get("shortId"));
+    setShowEdit(false);
+  };
 
   return (
     <div
       dir="rtl"
       style={{ borderRight: "px solid gray" }}
-      // style={{ borderRight: "px solid gray", display: showEdit ? "block" : "none" }}
       className="w-100 p-5"
     >
-      {/* Add Lesson */}
       <h2 className="pb-3">עריכת שיעור</h2>
-
       <form onSubmit={onSubmit}>
         <div className="col-lg-3 col-md-4  mt-3">
           <label>שם השיעור</label>
@@ -190,8 +177,6 @@ const EditLesson = ({ lesson, render, setShowEdit }) => {
           </div>
         </div>
       </form>
-
-      {/* End Add Lesson */}
     </div>
   );
 };

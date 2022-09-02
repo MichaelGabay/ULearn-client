@@ -33,12 +33,13 @@ const EditCourse = ({ courseInfo }) => {
     setForm(courseInfo);
     getCategories();
   }, [courseInfo]);
-  // get all the categories
+
+  // get all categories
   const getCategories = async () => {
     let { data } = await apiGet(GET_CATEGORIES_ROUTE);
     fixForSelect(data);
   };
-  // create array for select options
+  // create array for select component
   const fixForSelect = (categories) => {
     let options = [];
     categories.forEach((item) => {
@@ -46,7 +47,7 @@ const EditCourse = ({ courseInfo }) => {
     });
     setCategoriesOptions(options);
   };
-
+  // submiting
   const onSub = (e) => {
     e.preventDefault();
     if (errors.name || errors.price) {
@@ -55,6 +56,7 @@ const EditCourse = ({ courseInfo }) => {
     setLoading(true);
     doUpdateCourse();
   };
+  // update request
   const doUpdateCourse = async () => {
     let obj = { ...form };
     delete obj.categoryInSelect;
@@ -76,7 +78,7 @@ const EditCourse = ({ courseInfo }) => {
       console.log(err.response);
     }
   };
-
+  // uploadin imag
   const uploadImage = async () => {
     const formData = new FormData();
     formData.append("file", courseImageFile);
@@ -87,17 +89,19 @@ const EditCourse = ({ courseInfo }) => {
     );
     return resp.data.url;
   };
+  // doing validation 
+  useEffect(() => {
+    if (courseInfo.name) {
+      valid();
+    }
+  }, [form]);
   const valid = () => {
     if (!form.name || form.name.length > 40) errosObj.name = "שם אינו תקין";
     if (!form.price && form.price !== 0) errosObj.price = "מחיר חובה";
     if (form.info.length > 1000) errosObj.info = "תיאור אינו תקין";
     setErrors(errosObj);
   };
-  useEffect(() => {
-    if (courseInfo.name) {
-      valid();
-    }
-  }, [form]);
+
   return (
     <>
       <AuthUser />

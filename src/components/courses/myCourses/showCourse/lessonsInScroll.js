@@ -1,11 +1,3 @@
-import {
-  createTheme,
-  ThemeProvider,
-  List,
-  ListItem,
-  Button,
-} from "@mui/material";
-import { blueGrey, grey, lime, red } from "@mui/material/colors";
 import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { UPDATE_ORDER_ROUTE } from "../../../../shared/constant/url";
@@ -14,23 +6,6 @@ import style from "./showCourse.module.css";
 let dragItem = null;
 let dragOverItem = null;
 
-const custom = createTheme({
-  palette: {
-    primary: {
-      main: grey["900"],
-    },
-    secondary: {
-      main: grey["200"],
-    },
-    error: {
-      main: red["A200"],
-    },
-    success: {
-      main: blueGrey[800],
-    },
-    info: lime,
-  },
-});
 export const LessonsInScroll = ({
   lesson,
   onLessonCick,
@@ -46,6 +21,7 @@ export const LessonsInScroll = ({
   sy,
 }) => {
   const [query] = useSearchParams();
+  // doing sort when dnd is done
   const handelSort = async () => {
     const lessonsAr = JSON.parse(JSON.stringify(lessons));
     const draggedItemContent = lessonsAr.splice(dragItem, 1)[0];
@@ -60,6 +36,7 @@ export const LessonsInScroll = ({
       lessonsAr
     );
   };
+  // update style for animation view
   const hoverDrug = (e) => {
     if (sy != e.pageY) {
       if (sy < e.pageY) {

@@ -1,0 +1,18 @@
+.footer{
+    padding: 24px 8px;
+    /* min-height: 120px; */
+    background-color: hwb(0 4% 96%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+.creator{
+margin: 0;
+padding: 0;
+display: flex;
+align-items: center;
+}
+.para{
+    display: block;
+}

@@ -13,6 +13,7 @@ const MyCourses = () => {
     getMyCourses();
     window.scrollTo(0, 0);
   }, []);
+  
   //get my Courses
   const getMyCourses = async () => {
     setLoading(true)

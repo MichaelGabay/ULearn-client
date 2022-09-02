@@ -34,6 +34,7 @@ const custom = createTheme({
 
 export const BoxCourse = ({ course, render }) => {
   const nav = useNavigate();
+  // delete course
   const deleteCourse = async (shortId) => {
     if (window.confirm("בטוח שאתה רוצה למחוק")) {
       await apiDelete(DELETE_COURSE_ROUTE + `?shortId=${shortId}`);
