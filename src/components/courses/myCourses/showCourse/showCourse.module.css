@@ -1,0 +1,75 @@
+.myShadow {
+    box-shadow: inset 0px 2px 2px 2px #0000001a;
+    border: none;
+}
+
+.formCtrl {
+    display: block;
+    height: 40px;
+    border: #0000001a 1px;
+    border-style: none dashed dashed dashed;
+    border-radius: 6px;
+    padding: 0 10px 0 0;
+    width: 100%;
+}
+
+.formCtrl:focus {
+    outline: none;
+    background: #21212113;
+    transition: 1s;
+}
+
+.textArea {
+    display: block;
+    border: #0000001a 1px;
+    border-style: none dashed dashed dashed;
+    border-radius: 6px;
+    padding: 0 10px 0 0;
+    width: 100%;
+}
+
+.textArea:focus {
+    outline: none;
+    background: #706f6f13;
+    transition: 1s;
+}
+
+.fileUpload {
+    background: #212121e9 !important;
+    color: white !important;
+}
+
+.fileUpload:hover {
+    transition: 800ms;
+    background: #212121ee !important;
+    color: white!important;
+}
+
+.dargItem {
+}
+.lesson{
+    width: 100%;
+    font-size:1.2em;
+    margin: 0;
+    text-align: center;
+    padding: 14px 0;
+    border-bottom: 1px solid black;
+    cursor: move;
+    overflow: hidden;
+}
+
+.dragOverUp {
+    transform: translate(0, -57px);
+    transition: 400ms;
+    background: white !important;
+    position: relative;
+    z-index: 10;
+}
+
+.dragOverDown {
+    position: relative;
+    transform: translate(0, 57px);
+    transition: 400ms;
+    background: white !important;
+    z-index: 10;
+}

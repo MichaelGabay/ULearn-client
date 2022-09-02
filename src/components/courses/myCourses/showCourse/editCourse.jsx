@@ -1,32 +1,38 @@
-import React, { useEffect, useState } from "react";
-import "./createCourse.module.css";
-import createCoursePic from "../../assets/images/createCourse/createCourse.webp";
-import { useForm } from "react-hook-form";
-import style from "./createCourse.module.css";
-import {
-  ADD_COURSE_ROUTE,
-  GET_CATEGORIES_ROUTE,
-} from "../../shared/constant/url";
-import { apiGet, apiPost } from "../../shared/services/services";
-import Select from "react-select";
-import { ReactFileInputCustom } from "react-file-input-custom";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Button, CircularProgress } from "@mui/material";
-import AuthUser from "../../shared/components/auth/authUser";
+import React, { useEffect, useState } from "react";
+import { ReactFileInputCustom } from "react-file-input-custom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import Select from "react-select";
+import AuthUser from "../../../../shared/components/auth/authUser";
+import { apiGet, apiPut } from "../../../../shared/services/services";
+import style from "./showCourse.module.css";
+import {
+  GET_CATEGORIES_ROUTE,
+  UPDATE_COURSE_ROUTE,
+} from "../../../../shared/constant/url";
+import axios from "axios";
+import useSimpleForm from "../../../../shared/hooks/useForm";
 
-let categoryShortId;
-const CreateCourse = () => {
-  const [categoriesOptions, setCategoriesOptions] = useState([]);
-  const [courseImagFile, setCourseImagFile] = useState(false);
-  const [loading, setLoading] = useState(false);
-
+const EditCourse = ({ courseInfo }) => {
+  let errosObj = {};
   const nav = useNavigate();
-  let {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [query] = useSearchParams();
+  const [courseImageFile, setCourseImageFile] = useState(false);
+  const [masseg, setMasseg] = useState("");
+  const [categoriesOptions, setCategoriesOptions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm, errors, setErrors, resetForm] = useSimpleForm({
+    name: "",
+    img_url: "",
+    info: "",
+    price: "",
+    categoryShortId: "",
+  });
+
+  useEffect(() => {
+    setForm(courseInfo);
+    getCategories();
+  }, [courseInfo]);
   // get all the categories
   const getCategories = async () => {
     let { data } = await apiGet(GET_CATEGORIES_ROUTE);
@@ -40,26 +46,40 @@ const CreateCourse = () => {
     });
     setCategoriesOptions(options);
   };
-  //on submit
-  const onSub = async (_dataBody) => {
-    _dataBody.categoryShortId = categoryShortId;
-    if (!_dataBody.categoryShortId) {
-      alert("you must choose category");
+
+  const onSub = (e) => {
+    e.preventDefault();
+    if (errors.name || errors.price) {
       return;
     }
-    // colling to uploading image
-    if (courseImagFile) {
-      setLoading(true);
-      let imgUrl = await uploadImage();
-      _dataBody.img_url = imgUrl;
+    setLoading(true);
+    doUpdateCourse();
+  };
+  const doUpdateCourse = async () => {
+    let obj = { ...form };
+    delete obj.categoryInSelect;
+    try {
+      if (courseImageFile) {
+        obj.img_url = await uploadImage();
+        setForm({ img_url: obj.img_url });
+      }
+      const { data } = await apiPut(
+        UPDATE_COURSE_ROUTE + "?shortId=" + query.get("shortId"),
+        obj
+      );
+      setLoading(false);
+      setMasseg("השינויים נשמרו");
+      setTimeout(() => {
+        setMasseg("");
+      }, 3000);
+    } catch (err) {
+      console.log(err.response);
     }
-    createCourse(_dataBody);
   };
 
-  // uploading image to cloudinery
   const uploadImage = async () => {
     const formData = new FormData();
-    formData.append("file", courseImagFile);
+    formData.append("file", courseImageFile);
     formData.append("upload_preset", "miki101");
     let resp = await axios.post(
       "https://api.cloudinary.com/v1_1/michael-gabay/image/upload",
@@ -67,25 +87,21 @@ const CreateCourse = () => {
     );
     return resp.data.url;
   };
-
-  //update data base
-  const createCourse = async (course) => {
-    try {
-      await apiPost(ADD_COURSE_ROUTE, course);
-      nav("/myCourses");
-    } catch (err) {
-      console.log(err);
-    }
+  const valid = () => {
+    if (!form.name || form.name.length > 40) errosObj.name = "שם אינו תקין";
+    if (!form.price && form.price !== 0) errosObj.price = "מחיר חובה";
+    if (form.info.length > 1000) errosObj.info = "תיאור אינו תקין";
+    setErrors(errosObj);
   };
-
   useEffect(() => {
-    getCategories();
-  }, []);
-
+    if (courseInfo.name) {
+      valid();
+    }
+  }, [form]);
   return (
     <>
       <AuthUser />
-      {loading && (
+      {loading ? (
         <CircularProgress
           sx={{
             position: "absolute",
@@ -96,18 +112,11 @@ const CreateCourse = () => {
           }}
           size={50}
         />
-      )}
-        <div
-          className={`d-lg-flex justify-content-around align-items-center p-lg-5 `}
-          style={{ direction: "rtl" }}
-        >
-          <div className="d-flex   justify-content-center pt-4 mt-4 py-lg-0  col-lg-5 col-md-12 ">
-            {/* class form  */}
-            <form
-              onSubmit={handleSubmit(onSub)}
-              className=" col-lg-12 col-md-8 col-10"
-            >
-              <h1 className="text-lg-end text-center  pb-4 ">צור קורס</h1>
+      ) : (
+        <div style={{ direction: "rtl" }} className="container d-flex me-5">
+          {courseInfo?.info && form && (
+            <form onSubmit={onSub} className=" col-6 mt-5">
+              <h1 className="text-lg-end text-center  pb-4 ">עדכן קורס</h1>
 
               <div className="d-lg-flex justify-content-between">
                 <div className="ms-lg-4 col-lg-6">
@@ -115,13 +124,16 @@ const CreateCourse = () => {
                   <div>
                     <input
                       placeholder="הקלד שם קורס..."
-                      {...register("name", { required: true })}
+                      value={form.name}
+                      onChange={(e) => setForm({ name: e.target.value })}
                       type="text"
                       className={`col-12 ${style.formCtrl} ${style.myShadow}`}
                     />
                   </div>
                   {errors.name && (
-                    <small className="text-danger d-block">שם הוא חובה</small>
+                    <small className="text-danger text-center d-block">
+                      שם הוא חובה
+                    </small>
                   )}
                 </div>
                 <div className="col-lg-5">
@@ -129,10 +141,16 @@ const CreateCourse = () => {
                   <div>
                     <div className="col-12 ">
                       <Select
+                        onChange={(e) =>
+                          setForm({
+                            categoryInSelect: e,
+                            categoryShortId: e.value,
+                          })
+                        }
                         placeholder="בחר קטגוריה..."
-                        options={categoriesOptions}
                         className={`col-12 text-center ${style.myShadow} me-auto`}
-                        onChange={(e) => (categoryShortId = e.value)}
+                        options={categoriesOptions}
+                        value={form.categoryInSelect}
                       />
                     </div>
                   </div>
@@ -142,30 +160,30 @@ const CreateCourse = () => {
                 <label className="mb-1">תיאור הקורס</label>
                 <div>
                   <textarea
+                    maxLength={181}
+                    value={form.info}
+                    onChange={(e) => setForm({ info: e.target.value })}
                     placeholder="ספר בקצרה על הקורס...."
                     rows={5}
-                    {...register("info", { required: true, minLength: 2 })}
                     className={`col-12 ${style.textArea} ${style.myShadow}`}
                   ></textarea>
                 </div>
                 {errors.info && (
-                  <small className="text-danger d-block">
-                    תיאור הקורס הוא חובה
-                  </small>
+                  <small className="text-danger d-block">{errors.info}</small>
                 )}
               </div>
-              <div className="col-lg-9   row align-items-center">
-                <div className=" col-lg-5  col-12 mb-3 mb-lg-0">
+              <div className="col-lg-12 mt-3  row align-items-center">
+                <div className=" col-2 mb-3 mb-lg-0">
                   <label className="mb-1">מחיר</label>
                   <div className="col-12">
                     <input
                       step="0.01"
+                      value={form.price}
+                      onChange={(e) => setForm({ price: e.target.value })}
                       style={{ height: "40px" }}
                       type={"number"}
                       placeholder="בחר מחיר...."
-                      defaultValue={0}
                       min={0}
-                      {...register("price", { required: true, minLength: 0 })}
                       className={`col-12 text-center ${style.textArea} ${style.myShadow}`}
                     />
                   </div>
@@ -177,15 +195,21 @@ const CreateCourse = () => {
                     )}
                   </div>
                 </div>
-                <div className="col-lg-6  col-12 mb-3 mb-lg-0">
+                <div className="col-5 mb-3 mb-lg-0">
                   <label></label>
                   <ReactFileInputCustom
-                    handleChange={(e) => setCourseImagFile(e.target.files[0])}
+                    handleChange={(e) => {
+                      setCourseImageFile(e.target.files[0]);
+                    }}
                     classes={"p-2 w-100 w-lg-auto " + style.fileUpload}
-                    text="הוסף תמונה לקורס"
+                    text="עדכן תמונה לקורס"
                     textColor="white"
                     backgroundColor="hsl(118, 31%, 79%)"
                   />
+                </div>
+
+                <div className="col-3 ">
+                  <img className="w-100" src={form.img_url} alt={form.name} />
                 </div>
               </div>
               <div className="d-none d-lg-block">
@@ -195,6 +219,7 @@ const CreateCourse = () => {
                   </small>
                 )}
               </div>
+
               <div className=" col-12 d-flex pt-5 justify-content-center">
                 <Button
                   type="submit"
@@ -203,7 +228,7 @@ const CreateCourse = () => {
                   color="success"
                   sx={{ width: "100%", fontSize: "1.1em" }}
                 >
-                  צור קורס
+                  עדכן קורס
                 </Button>
                 <Button
                   type="button"
@@ -216,17 +241,18 @@ const CreateCourse = () => {
                   חזור
                 </Button>
               </div>
+              <small
+                style={{ fontSize: "16px" }}
+                className="text-primary d-block mt-1"
+              >
+                {masseg}
+              </small>
             </form>
-          </div>
-          <div className="overflow-hidden col-5 d-none d-lg-block mt-5   ">
-            <div className={`${style.imgCourse} mb-5`}>
-              <img src={createCoursePic} width="100%" height={"100%"} alt="" />
-            </div>
-          </div>
+          )}
         </div>
-     
+      )}
     </>
   );
 };
 
-export default CreateCourse;
+export default EditCourse;
