@@ -4,6 +4,7 @@ import Login from '../../components/auth/login';
 import Logout from '../../components/auth/logout';
 import SignUp from '../../components/auth/signUp';
 import CoursePage from '../../components/course/coursePage';
+import ThankYouOrder from '../../components/course/thankYouOrder';
 import CreateCourse from '../../components/createCourse/createCourse';
 import Favourites from '../../components/favourites/favourites';
 import Home from '../../components/home';
@@ -26,8 +27,7 @@ const AppRoutes = () => {
                     <Route path='/myLearning' element={<MyLearning />} />
                     <Route path='/favourites' element={<Favourites/>} />
                     <Route path='/coursePage' element={<CoursePage />} />
-
-
+                    <Route path='/order/thankYou' element={<ThankYouOrder />} />
                 </Route>
                 <Route path='/*' element={<h1>404</h1>} />
             </Routes>
