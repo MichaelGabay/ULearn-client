@@ -1,0 +1,66 @@
+/* Login && sign-up*/
+
+.btn {
+    border: none;
+    background: #212121 !important;
+    color: white;
+}
+
+.btn:hover {
+    border: none;
+    transition: 800ms;
+    background: #212121c9 !important;
+    color: white!important;
+}
+
+.myShadow {
+    box-shadow: inset 0px 2px 2px 2px #0000001a;
+    border: none;
+}
+
+.formCtrl {
+    display: block;
+    height: 40px;
+    border: #0000001a 1px;
+    border-style: none dashed dashed dashed;
+    border-radius: 6px;
+    padding: 0 10px 0 0;
+    width: 100%;
+}
+
+.formCtrl:focus {
+    outline: none;
+    background: #21212113;
+    transition: 1s;
+}
+
+.formPassword {
+    background: none;
+    border: none;
+}
+
+.formPassword:focus {
+    outline: none;
+    background: none;
+    transition: 1s;
+}
+
+.forgotPassword {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.forgotPassword:hover {
+    color: #b7b7b7;
+}
+
+.externalLogin {
+    box-shadow: 0px 2px 24px 2px #0000001a;
+    border: #0000001a 2px;
+    border-style: solid dashed dashed dashed;
+    /* padding: 4px 8px; */
+    cursor: pointer;
+}
+
+
+/* Login && sign-up*/
