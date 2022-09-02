@@ -1,0 +1,410 @@
+.video {
+    width: 75%;
+    height: 63vh;
+}
+
+.lessonScroller {
+    width: 25%;
+    height: 78vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    direction: ltr;
+    position: fixed;
+    top: 74px;
+}
+.lessonScroller::-webkit-scrollbar{
+    background-color: white;
+    width: 12px;
+}
+.lessonScroller::-webkit-scrollbar-thumb{
+    background-color: rgb(23, 19, 19);
+    border-radius: 24px;
+}
+
+
+
+.tabs {
+    padding-top: 20px;
+    /* height: 29vh; */
+    /* background-color: rgb(101, 102, 102); */
+    width: 75%;
+    /* float: left; */
+}
+
+.hideMobileShowComputer {
+    display: block;
+}
+
+.lessonHover:hover {
+    background: #1c1d1f16 !important;
+}
+
+
+/* FAQ */
+
+.questionsWidth {
+    width: 55%;
+}
+
+.myShadow {
+    box-shadow: inset 0px 2px 2px 2px #0000001a;
+    border: none;
+}
+
+.formCtrl {
+    display: block;
+    height: 40px;
+    border: #0000001a 2px;
+    border-style: none dashed dashed dashed;
+    border-radius: 6px;
+    padding: 0px 13px 0px 0;
+    width: 100%;
+    height: 45px !important;
+}
+
+.formCtrl:focus {
+    outline: none;
+    transition: 1s;
+}
+
+.input {
+    font-size: 1.1em;
+    border: none;
+    height: 40px !important;
+    padding-right: 8px;
+    background: transparent;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.question {
+    height: auto;
+    border-radius: 12px;
+    padding: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.question p {
+    white-space: pre-wrap;
+}
+
+.question:hover {
+    transition: 200ms;
+    background: rgba(0, 0, 0, 0.048);
+}
+
+.comments {
+    color: gray;
+}
+
+.comments:hover {
+    transition: 80;
+    color: black;
+}
+
+.infoQ {
+    font-size: 0.8em;
+    margin: 0 50px 0 auto;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif !important;
+    white-space: pre-wrap !important;
+    overflow: hidden !important;
+}
+
+
+/* Add question */
+
+.btnAddQ {
+    box-shadow: 0px 2px 2px 2px #0000001a !important;
+    border: solid 1px black !important;
+    color: black !important;
+    padding: 10px 40px !important;
+    font-size: 1.1em !important;
+}
+
+.tipAddQ {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.139);
+    font-family: sans-serif !important;
+}
+
+.textArea {
+    box-shadow: inset 0px 2px 2px 2px #0000001a;
+    width: 100%;
+    font-size: 1.1em;
+    padding-right: 8px;
+    background: transparent;
+    border: #0000001a 2px;
+    border-style: none dashed dashed dashed;
+    border-radius: 6px;
+    padding: 10px 15px;
+    width: 100%;
+    height: 200px !important;
+}
+
+.textArea:focus {
+    outline: none;
+}
+
+.btnPublish {
+    width: 100%;
+    margin-top: 20px !important;
+    font-size: 1.1em !important;
+    background: rgba(128, 128, 128, 0.882) !important;
+}
+
+.btnPublish:hover {
+    background: rgba(177, 177, 177, 0.963) !important;
+}
+
+.trashIcon {
+    color: "#455a64" !important;
+}
+
+.trashIcon:hover {
+    cursor: pointer;
+    color: #bf360c;
+}
+
+
+/* Add Comment */
+
+.commentsWidth {
+    width: 68%;
+}
+
+.addComment {
+    padding: 6px 50px;
+    background: #212121 !important;
+    margin-top: 20px;
+}
+
+.addComment:hover {
+    transition: 200ms;
+    background: #424242 !important;
+}
+
+.hideComputerShowMobile {
+    display: none !important;
+}
+
+.infoLessonMobile {
+    display: none !important;
+}
+
+
+/*
+#  $$\      $$\                 $$\ $$\                  $$$$$$\                                $$\
+#  $$$\    $$$ |                $$ |\__|                $$  __$$\                               \__|
+#  $$$$\  $$$$ | $$$$$$\   $$$$$$$ |$$\  $$$$$$\        $$ /  $$ |$$\   $$\  $$$$$$\   $$$$$$\  $$\  $$$$$$\   $$$$$$$\
+#  $$\$$\$$ $$ |$$  __$$\ $$  __$$ |$$ | \____$$\       $$ |  $$ |$$ |  $$ |$$  __$$\ $$  __$$\ $$ |$$  __$$\ $$  _____|
+#  $$ \$$$  $$ |$$$$$$$$ |$$ /  $$ |$$ | $$$$$$$ |      $$ |  $$ |$$ |  $$ |$$$$$$$$ |$$ |  \__|$$ |$$$$$$$$ |\$$$$$$\
+#  $$ |\$  /$$ |$$   ____|$$ |  $$ |$$ |$$  __$$ |      $$ $$\$$ |$$ |  $$ |$$   ____|$$ |      $$ |$$   ____| \____$$\
+#  $$ | \_/ $$ |\$$$$$$$\ \$$$$$$$ |$$ |\$$$$$$$ |      \$$$$$$ / \$$$$$$  |\$$$$$$$\ $$ |      $$ |\$$$$$$$\ $$$$$$$  |
+#  \__|     \__| \_______| \_______|\__| \_______|       \___$$$\  \______/  \_______|\__|      \__| \_______|\_______/
+#                                                            \___|
+*/
+
+@media screen and (max-width:1300px) {
+    .video {
+        width: 75%;
+        height: 50vh !important;
+    }
+    .lessonScroller {
+        width: 25%;
+    }
+    .tabs {
+        min-height: 42vh;
+        width: 75%;
+    }
+    .questionsWidth {
+        width: 75%;
+    }
+    .commentsWidth {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:900px) {
+    /* Responsive view */
+    .hideMobileShowComputer {
+        display: none !important;
+    }
+    .hideComputerShowMobile {
+        display: block !important;
+    }
+    /* video */
+    .videoMobile {
+        height: 50vh;
+        position: relative;
+        bottom: 4px;
+    }
+    /* Tabs */
+    .tabs {
+        padding-top: 20px;
+        min-height: 29vh;
+        /* background-color: rgb(101, 102, 102); */
+        width: 100%;
+        /* float: left; */
+    }
+    /* FAQ */
+    .questionsWidth {
+        width: 80%;
+    }
+    .myShadow {
+        box-shadow: inset 0px 2px 2px 2px #0000001a;
+        border: none;
+    }
+    .formCtrl {
+        display: block;
+        height: 40px;
+        border: #0000001a 2px;
+        border-style: none dashed dashed dashed;
+        border-radius: 6px;
+        padding: 0px 13px 0px 0;
+        width: 80%;
+        height: 35px !important;
+    }
+    .formCtrl:focus {
+        outline: none;
+        transition: 1s;
+    }
+    .input {
+        font-size: 0.9em;
+        border: none;
+        height: 40px !important;
+        padding-right: 8px;
+        background: transparent;
+    }
+    .input:focus {
+        outline: none;
+    }
+    .question {
+        height: auto;
+        border-radius: 12px;
+        padding: 10px;
+        border: 1px solid rgba(128, 128, 128, 0.1);
+    }
+    .question p {
+        white-space: pre-wrap;
+    }
+    .question:hover {
+        transition: 200ms;
+        background: rgba(0, 0, 0, 0.048);
+    }
+    .comments {
+        color: gray;
+    }
+    .comments:hover {
+        transition: 80;
+        color: black;
+    }
+    .commentsWidth {
+        width: 100% !important;
+        padding-right: 10%;
+    }
+    .infoQ {
+        font-size: 0.8em;
+        margin: 0 50px 0 auto;
+        padding: 0;
+        font-family: 'Open Sans', sans-serif !important;
+        white-space: pre-wrap !important;
+        overflow: hidden !important;
+    }
+    /* Add question */
+    .btnAddQ {
+        box-shadow: 0px 2px 2px 2px #0000001a !important;
+        border: solid 1px black !important;
+        color: black !important;
+        padding: 5px 20px !important;
+        font-size: 1em !important;
+    }
+    .tipAddQ {
+        padding: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.139);
+        font-family: sans-serif !important;
+    }
+    .textArea {
+        box-shadow: inset 0px 2px 2px 2px #0000001a;
+        width: 100%;
+        font-size: 1.1em;
+        padding-right: 8px;
+        background: transparent;
+        border: #0000001a 2px;
+        border-style: none dashed dashed dashed;
+        border-radius: 6px;
+        padding: 10px 15px;
+        width: 100%;
+        height: 150px !important;
+    }
+    .textArea:focus {
+        outline: none;
+    }
+    .btnPublish {
+        width: 100%;
+        margin-top: 20px !important;
+        font-size: 1.1em !important;
+        background: rgba(128, 128, 128, 0.882) !important;
+    }
+    .btnPublish:hover {
+        background: rgba(177, 177, 177, 0.963) !important;
+    }
+    .trashIcon {
+        color: "#455a64" !important;
+    }
+    .trashIcon:hover {
+        cursor: pointer;
+        color: #bf360c;
+    }
+    /* Add Comment */
+    .commentsWidth {
+        width: 68%;
+    }
+    .addComment {
+        padding: 6px 50px;
+        background: #212121 !important;
+        margin-top: 20px;
+    }
+    .addComment:hover {
+        transition: 200ms;
+        background: #424242 !important;
+    }
+    /* Lessons */
+    .lessonsMobile {}
+    .lessonMobile {
+        font-size: 0.9em !important;
+        border-bottom: #212121 1px dashed;
+        padding: 45px 20px !important;
+        font-weight: bold;
+    }
+    .infoLessonMobile {
+        display: block !important;
+        padding: 10px 0;
+        white-space: pre-wrap;
+        font-weight: lighter !important;
+    }
+}
+
+@media screen and (max-width:599px) {
+    .videoMobile {
+        height: 33vh;
+        position: relative;
+        bottom: 12px;
+    }
+    .questionsWidth {
+        width: 100%;
+        padding: 20px;
+    }
+    .tipAddQ {
+        padding: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.139);
+        font-family: sans-serif !important;
+        font-size: 0.9em;
+    }
+    .commentsWidth {
+        width: 100% !important;
+        padding-right: 5%;
+    }
+}

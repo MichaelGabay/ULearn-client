@@ -6,6 +6,7 @@ import SignUp from '../../components/auth/signUp';
 import CoursePage from '../../components/course/coursePage';
 import ThankYouOrder from '../../components/course/thankYouOrder';
 import CreateCourse from '../../components/createCourse/createCourse';
+import DisplayCourse from '../../components/display/displayCourse';
 import Favourites from '../../components/favourites/favourites';
 import Home from '../../components/home';
 import ShowCourse from '../../components/myCourses/editCourse/showCourse';
@@ -28,6 +29,7 @@ const AppRoutes = () => {
                     <Route path='/favourites' element={<Favourites/>} />
                     <Route path='/coursePage' element={<CoursePage />} />
                     <Route path='/order/thankYou' element={<ThankYouOrder />} />
+                    <Route path='/course' element={<DisplayCourse />} />
                 </Route>
                 <Route path='/*' element={<h1>404</h1>} />
             </Routes>
