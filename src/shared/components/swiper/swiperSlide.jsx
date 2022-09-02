@@ -42,7 +42,6 @@ export const SwiperSlideX = ({ data, slider }) => {
                                 image={item.img_url}
                                 alt={item.name}
                             />
-
                         </CardActionArea>
                     </Card>
 

@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToMyCart, getMyCart } from "../../shared/redux/features/cartSlice";
 import { addToWishList } from "../../shared/redux/features/wishListSlice";
 import PayPal from "../../shared/payment/payPal";
-import screenImage from "../../assests/Images/coursePage/05R7ApclhnnV0xTx4drU4BE-1..v1617290389.jpg"
+import screenImage from "../../assets/images/coursePage/05R7ApclhnnV0xTx4drU4BE-1..v1617290389.jpg"
 import style from "./coursePage.module.css"
 export default function CoursePage() {
   const [course, setCourseProperties] = useState({});
