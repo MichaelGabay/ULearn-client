@@ -9,6 +9,7 @@ import CreateCourse from '../../components/createCourse/createCourse';
 import DisplayCourse from '../../components/display/displayCourse';
 import Favourites from '../../components/favourites/favourites';
 import Home from '../../components/home';
+import MyAccount from '../../components/myAccount/myAccount';
 import ShowCourse from '../../components/myCourses/editCourse/showCourse';
 import MyCourses from '../../components/myCourses/myCourses';
 import MyLearning from '../../components/myLearning/myLearning';
@@ -19,6 +20,7 @@ const AppRoutes = () => {
             <Routes>
                 <Route path='/' element={<Layout />}>
                     <Route index element={<Home />} />
+                    <Route path='/myAccount' element={<MyAccount/>} /> 
                     <Route path='/login' element={<Login />} />
                     <Route path='/signUp' element={<SignUp />} />
                     <Route path='/logout' element={<Logout />} />

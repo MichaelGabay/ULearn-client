@@ -5,7 +5,6 @@ import { FaComments, FaSearch } from "react-icons/fa";
 import { time_ago } from "../../shared/helpers/calculationTimeForDisplay";
 import style from "./displayCourse.module.css";
 import QuestionItem from "./questionItem";
-import { useSelector } from "react-redux";
 
 const Questions = ({
     onAddQClick,
