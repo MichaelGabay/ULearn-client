@@ -1,0 +1,36 @@
+.imagCourse {
+    position: absolute;
+    width: 66%;
+    height: 61.6%;
+    top: 6%;
+    right: 17%;
+    z-index: 4;
+}
+@media screen and (max-width:3000px) {
+    .imagCourse {
+        width: 66%;
+        right: 17%;
+        height: 64.5%;
+        top: 7%;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    .imagCourse {
+        width: 65%;
+        right: 17.4%;
+        height: 40.5%;
+        top: 5%;
+    }
+
+}
+@media screen and (max-width:770px) {
+    .imagCourse {
+        width: 66%;
+        right: 17%;
+        height: 65.1%;
+        top: 6.4%;
+    }
+
+}
+

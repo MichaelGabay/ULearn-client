@@ -1,0 +1,123 @@
+.strip {
+    background-image: url("../assets/images/imgHome/strip.jpg");
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    bottom: 20px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    height: 450px;
+    display: flex;
+    align-items: center;
+}
+
+.boxInStrip {
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    direction: rtl;
+    background: white;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    margin-bottom: 100px;
+    margin-left: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .08);
+}
+
+.boxInStrip div {
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.stripContainer {
+    max-width: 1350px;
+    margin: 0 auto;
+}
+
+.categoryName {
+    font-size: 1.7em;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+
+.courseOfTheWeek {
+    border: solid rgb(203, 203, 203) 1px;
+}
+
+.courseOfTheWeek:hover {
+    background: rgba(128, 128, 128, 0.075);
+}
+
+.courseOfTheWeek div:first-child {
+    width: 50%;
+    height: 350px;
+}
+
+.courseOfTheWeek div:last-child {
+    width: 50%;
+    height: 350px;
+}
+
+
+/* swiper */
+
+.swiperSlideX {
+    height: 300px;
+}
+
+.input {}
+
+
+/*
+#  $$\      $$\                 $$\ $$\                  $$$$$$\                                $$\
+#  $$$\    $$$ |                $$ |\__|                $$  __$$\                               \__|
+#  $$$$\  $$$$ | $$$$$$\   $$$$$$$ |$$\  $$$$$$\        $$ /  $$ |$$\   $$\  $$$$$$\   $$$$$$\  $$\  $$$$$$\   $$$$$$$\
+#  $$\$$\$$ $$ |$$  __$$\ $$  __$$ |$$ | \____$$\       $$ |  $$ |$$ |  $$ |$$  __$$\ $$  __$$\ $$ |$$  __$$\ $$  _____|
+#  $$ \$$$  $$ |$$$$$$$$ |$$ /  $$ |$$ | $$$$$$$ |      $$ |  $$ |$$ |  $$ |$$$$$$$$ |$$ |  \__|$$ |$$$$$$$$ |\$$$$$$\
+#  $$ |\$  /$$ |$$   ____|$$ |  $$ |$$ |$$  __$$ |      $$ $$\$$ |$$ |  $$ |$$   ____|$$ |      $$ |$$   ____| \____$$\
+#  $$ | \_/ $$ |\$$$$$$$\ \$$$$$$$ |$$ |\$$$$$$$ |      \$$$$$$ / \$$$$$$  |\$$$$$$$\ $$ |      $$ |\$$$$$$$\ $$$$$$$  |
+#  \__|     \__| \_______| \_______|\__| \_______|       \___$$$\  \______/  \_______|\__|      \__| \_______|\_______/
+#                                                            \___|
+*/
+
+@media screen and (max-width:900px) {
+    .strip {
+        height: 350px;
+        bottom: 32px;
+    }
+    .courseOfTheWeek div:first-child {
+        width: 100% !important;
+        height: auto;
+        order: 1;
+        align-items: center;
+    }
+    .courseOfTheWeek div:last-child {
+        width: 100% !important;
+        height: 320px;
+    }
+    .paddingCourseOfTheWeek {
+        padding: 30px;
+    }
+    .btnWeek {
+        margin: 0 auto !important;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .boxInStrip {
+        display: none !important;
+    }
+    .strip {
+        height: 250px;
+        bottom: 32px;
+    }
+    .courseOfWeekH {
+        text-align: center !important;
+    }
+    .categoryName {
+        text-align: center;
+        padding-bottom: 20px;
+        font-weight: bold;
+    }
+}

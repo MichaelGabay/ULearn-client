@@ -5,7 +5,7 @@ import Logout from '../../components/auth/logout';
 import SignUp from '../../components/auth/signUp';
 import CreateCourse from '../../components/createCourse/createCourse';
 import Favourites from '../../components/favourites/favourites';
-import Home from '../../components/Home';
+import Home from '../../components/home';
 import ShowCourse from '../../components/myCourses/editCourse/showCourse';
 import MyCourses from '../../components/myCourses/myCourses';
 import MyLearning from '../../components/myLearning/myLearning';
