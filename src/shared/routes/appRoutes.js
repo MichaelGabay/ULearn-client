@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from '../../components/auth/login';
 import Logout from '../../components/auth/logout';
 import SignUp from '../../components/auth/signUp';
-import CreateCourse from '../../components/courses/createCourse/createCourse';
-import MyCourses from '../../components/courses/myCourses/myCourses';
-import ShowCourse from '../../components/courses/myCourses/showCourse/showCourse';
+import CreateCourse from '../../components/createCourse/createCourse';
 import Home from '../../components/Home';
+import ShowCourse from '../../components/myCourses/editCourse/showCourse';
+import MyCourses from '../../components/myCourses/myCourses';
 import Layout from '../layout/layout';
 const AppRoutes = () => {
     return (

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { UPDATE_ORDER_ROUTE } from "../../../../shared/constant/url";
-import { apiPost } from "../../../../shared/services/services";
+import { UPDATE_ORDER_ROUTE } from "../../../shared/constant/url";
+import { apiPost } from "../../../shared/services/services";
 import style from "./showCourse.module.css";
 let dragItem = null;
 let dragOverItem = null;

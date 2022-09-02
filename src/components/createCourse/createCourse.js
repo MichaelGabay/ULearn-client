@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./createCourse.module.css";
-import createCoursePic from "../../../assets/images/createCourse/createCourse.webp";
+import createCoursePic from "../../assets/images/createCourse/createCourse.webp";
 import { useForm } from "react-hook-form";
 import style from "./createCourse.module.css";
 import {
   ADD_COURSE_ROUTE,
   GET_CATEGORIES_ROUTE,
-} from "../../../shared/constant/url";
-import { apiGet, apiPost } from "../../../shared/services/services";
+} from "../../shared/constant/url";
+import { apiGet, apiPost } from "../../shared/services/services";
 import Select from "react-select";
 import { ReactFileInputCustom } from "react-file-input-custom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, CircularProgress } from "@mui/material";
-import AuthUser from "../../../shared/components/auth/authUser";
+import AuthUser from "../../shared/components/auth/authUser";
 
 let categoryShortId;
 const CreateCourse = () => {

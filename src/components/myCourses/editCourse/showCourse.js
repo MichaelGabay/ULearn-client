@@ -2,11 +2,11 @@ import { Button, List, ListItem } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { GET_COURSE } from "../../../../shared/constant/url";
-import { apiGet } from "../../../../shared/services/services";
+import { GET_COURSE } from "../../../shared/constant/url";
+import { apiGet } from "../../../shared/services/services";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { blueGrey, grey, lightGreen, lime, red } from "@mui/material/colors";
-import AuthUser from "../../../../shared/components/auth/authUser";
+import AuthUser from "../../../shared/components/auth/authUser";
 import AddLesson from "./addLesson";
 import EditLesson from "./editLesson";
 import { LessonsInScroll } from "./lessonsInScroll";

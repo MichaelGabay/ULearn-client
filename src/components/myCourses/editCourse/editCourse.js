@@ -3,15 +3,15 @@ import React, { useEffect, useState } from "react";
 import { ReactFileInputCustom } from "react-file-input-custom";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import Select from "react-select";
-import AuthUser from "../../../../shared/components/auth/authUser";
-import { apiGet, apiPut } from "../../../../shared/services/services";
+import AuthUser from "../../../shared/components/auth/authUser";
+import { apiGet, apiPut } from "../../../shared/services/services";
 import style from "./showCourse.module.css";
 import {
   GET_CATEGORIES_ROUTE,
   UPDATE_COURSE_ROUTE,
-} from "../../../../shared/constant/url";
+} from "../../../shared/constant/url";
 import axios from "axios";
-import useSimpleForm from "../../../../shared/hooks/useForm";
+import useSimpleForm from "../../../shared/hooks/useForm";
 
 const EditCourse = ({ courseInfo }) => {
   let errosObj = {};

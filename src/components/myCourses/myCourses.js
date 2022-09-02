@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { GET_MY_COURSES_ROUTE } from "../../../shared/constant/url";
-import { apiGet } from "../../../shared/services/services";
+import { GET_MY_COURSES_ROUTE } from "../../shared/constant/url";
+import { apiGet } from "../../shared/services/services";
 import style from "./myCourses.module.css";
 import { BoxCourse } from "./boxCourse";
-import AuthUser from "../../../shared/components/auth/authUser";
+import AuthUser from "../../shared/components/auth/authUser";
 import CircularProgress from '@mui/material/CircularProgress';
 
 const MyCourses = () => {

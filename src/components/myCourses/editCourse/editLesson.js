@@ -7,13 +7,13 @@ import { ReactFileInputCustom } from "react-file-input-custom";
 import { Button } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
-import { apiDelete, apiPut } from "../../../../shared/services/services";
+import { apiDelete, apiPut } from "../../../shared/services/services";
 import {
   DELETE_LESSON_ROUTE,
   UPDATE_LESSON_ROUTE,
-} from "../../../../shared/constant/url";
-import useSimpleForm from "../../../../shared/hooks/useForm";
-import { fixSrcString } from "../../../../shared/helpers/fixSrcLink";
+} from "../../../shared/constant/url";
+import useSimpleForm from "../../../shared/hooks/useForm";
+import { fixSrcString } from "../../../shared/helpers/fixSrcLink";
 const custom = createTheme({
   palette: {
     primary: {

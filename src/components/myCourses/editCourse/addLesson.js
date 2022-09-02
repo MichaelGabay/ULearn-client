@@ -6,10 +6,10 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { ReactFileInputCustom } from "react-file-input-custom";
 import { Button } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
-import { ADD_LESSON_ROUTE } from "../../../../shared/constant/url";
-import { apiPost } from "../../../../shared/services/services";
-import useSimpleForm from "../../../../shared/hooks/useForm";
-import { fixSrcString } from "../../../../shared/helpers/fixSrcLink";
+import { ADD_LESSON_ROUTE } from "../../../shared/constant/url";
+import { apiPost } from "../../../shared/services/services";
+import useSimpleForm from "../../../shared/hooks/useForm";
+import { fixSrcString } from "../../../shared/helpers/fixSrcLink";
 
 const custom = createTheme({
   palette: {

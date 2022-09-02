@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./myCourses.module.css";
 
-import { DELETE_COURSE_ROUTE } from "../../../shared/constant/url";
+import { DELETE_COURSE_ROUTE } from "../../shared/constant/url";
 import {
   lightGreen,
   amber,
@@ -14,7 +14,7 @@ import {
 } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { apiDelete } from "../../../shared/services/services";
+import { apiDelete } from "../../shared/services/services";
 import { Button } from "@mui/material";
 const custom = createTheme({
   palette: {
