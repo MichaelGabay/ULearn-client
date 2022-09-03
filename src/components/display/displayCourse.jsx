@@ -10,18 +10,13 @@ import { Tab, TabPanel, TabList, Tabs } from "react-tabs";
 import "./reactTabs.css";
 import AuthUser from "../../shared/components/auth/authUser";
 import Questions from "./questions";
-import { Button, CircularProgress } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { CircularProgress } from "@mui/material";
 import AddQ from "./addQ";
 import AboutPageCourse from "./aboutPageCourse";
 import CommentsQQ from "./commentsQQ";
-{
-  /*  */
-}
 
 const DisplayCourse = () => {
   const [query] = useSearchParams();
-  // only for view contain _id of lesson
   const [lessonWhoClickd, setLessonWhoClickd] = useState("");
   const [course, setCourse] = useState();
   const [views, setViews] = useState([]);
@@ -37,7 +32,7 @@ const DisplayCourse = () => {
   useEffect(() => {
     user && getCourse();
   }, [user]);
-
+  // get the course lessons
   const getCourse = async () => {
     try {
       let { data } = await apiGet(GET_COURSE + `?shortId=${shortId}`);
@@ -49,13 +44,13 @@ const DisplayCourse = () => {
       console.log(err);
     }
   };
-
+  // validate if the course belongs to user
   const validateBuying = (subscribes) => {
     if (!subscribes.find((item) => item == user._id)) {
       nav(`/CoursePage?shortId=${shortId}`);
     }
   };
-
+  // update screen whith the last lesson or first lesson 
   const updateFirstLesson = (data) => {
     let firstIndex = 0;
     let myLearnCourse = user.myLearning.find(
@@ -109,7 +104,7 @@ const DisplayCourse = () => {
           ) : (
             <div>
               <AuthUser />
-              <div  dir="rtl" className={style.hideMobileShowComputer}>
+              <div dir="rtl" className={style.hideMobileShowComputer}>
                 <div className="d-flex  p-0 m-0">
                   <div className={`${style.lessonScroller}`}>
                     <div dir="rtl">

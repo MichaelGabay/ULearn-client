@@ -20,7 +20,6 @@ const MyCourses = () => {
     const { data } = await apiGet(GET_MY_COURSES_ROUTE);
     setMyCourses(data);
     setLoading(false)
-
   };
 
   return (

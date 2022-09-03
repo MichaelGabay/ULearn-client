@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-// how to use -->   const [form, setForm, errors, setErrors, resetForm] = useSimpleForm({name:"",password})
+// how to use -->   const [form, setForm, errors, setErrors, resetForm] = useSimpleForm({name:"",password:""})
 
 const useSimpleForm = (initialState) => {
     const [state, setState] = useState(initialState)

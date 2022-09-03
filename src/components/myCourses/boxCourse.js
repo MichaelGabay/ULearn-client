@@ -1,16 +1,12 @@
 import React from "react";
 import style from "./myCourses.module.css";
-
 import { DELETE_COURSE_ROUTE } from "../../shared/constant/url";
 import {
-  lightGreen,
   amber,
   lime,
   pink,
   green,
-  blue,
   red,
-  grey,
 } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";

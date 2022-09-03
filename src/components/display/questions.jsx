@@ -1,7 +1,7 @@
-import { Avatar, Button } from "@mui/material";
+import {  Button } from "@mui/material";
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { FaComments, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { time_ago } from "../../shared/helpers/calculationTimeForDisplay";
 import style from "./displayCourse.module.css";
 import QuestionItem from "./questionItem";
@@ -12,9 +12,9 @@ const Questions = ({
     setQuestionWhoClickd, course, setCourse, setLessonToPlay, lessonIndex, user
 }) => {
     const [questionFixd, seTQuestionFixd] = useState();
+    // fixing time to comments time format
     useEffect(() => {
         if (course?.lessons?.length > 0) {
-            //qAr for doing time_ago when the components load
             const qArr = JSON.parse(JSON.stringify(course?.lessons[lessonIndex].FAQ));
             qArr.map((item) => {
                 item.Q.date_created = time_ago(item.Q.date_created);

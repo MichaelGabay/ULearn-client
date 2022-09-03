@@ -30,6 +30,7 @@ export default function CoursePage() {
     getCourseProperties();
     console.log("run")
   }, []);
+  // got course information
   const getCourseProperties = async () => {
     try {
       let { data } = await apiGet(
@@ -40,6 +41,7 @@ export default function CoursePage() {
       console.log(err.response);
     }
   };
+  // buy course
   const buyCourse = async () => {
     try {
       let resp = await apiPost(

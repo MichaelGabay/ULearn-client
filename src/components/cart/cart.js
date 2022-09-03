@@ -34,12 +34,15 @@ export default function Cart({ setIsCartOpen, firstTime }) {
     });
     setSum(amount);
   };
+  // remove product from cart
   const removeFromCart = (shortId) => {
     dispatch(addToMyCart({ shortId }));
   };
+  // remove all the products from cart
   const cleenCart = () => {
     dispatch(deleteAllCart());
   };
+  // buy all the product
   const buyAllTheCart = async (empt) => {
     try {
       await dispatch(buyAllCart());
@@ -48,6 +51,7 @@ export default function Cart({ setIsCartOpen, firstTime }) {
       alert("error");
     }
   };
+  // buy one product
   const buyCourse = async (shortId) => {
     try {
       let resp = await apiPost(BUY_COURSE_ROUTE + `?shortId=${shortId}`);

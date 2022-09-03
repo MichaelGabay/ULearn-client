@@ -20,9 +20,9 @@ const AppRoutes = () => {
             <Routes>
                 <Route path='/' element={<Layout />}>
                     <Route index element={<Home />} />
-                    <Route path='/myAccount' element={<MyAccount/>} /> 
                     <Route path='/login' element={<Login />} />
                     <Route path='/signUp' element={<SignUp />} />
+                    <Route path='/myAccount' element={<MyAccount/>} /> 
                     <Route path='/logout' element={<Logout />} />
                     <Route path='/createCourse' element={<CreateCourse />} /> 
                     <Route path='/myCourses' element={<MyCourses />} />
@@ -33,7 +33,7 @@ const AppRoutes = () => {
                     <Route path='/order/thankYou' element={<ThankYouOrder />} />
                     <Route path='/course' element={<DisplayCourse />} />
                 </Route>
-                <Route path='/*' element={<h1>404</h1>} />
+                <Route path='/*' element={<h1>404 not found</h1>} />
             </Routes>
         </Router>
     )

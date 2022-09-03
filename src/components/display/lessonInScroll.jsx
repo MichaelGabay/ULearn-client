@@ -16,8 +16,7 @@ export default function LessonInScroll({
   user
 }) {
   const [query] = useSearchParams();
-  // const { user } = useSelector((store) => store.userReducer);
-
+  // updateing view if user already viewed lesson
   const updateView = async () => {
     let resp = await apiPost(
       UPDATE_VIEW_LESSON_ROUTE +
@@ -30,9 +29,7 @@ export default function LessonInScroll({
       setViews([...views, lesson._id]);
     }
   };
-  useEffect(() => {
-    
-  }, [user])
+
   return (
     <div
       dir="rtl"
@@ -46,7 +43,7 @@ export default function LessonInScroll({
         alignItems: "center",
         background: lessonWhoClickd === lesson._id ? "#1c1d1f16" : "none",
       }}
-      className={style.lessonHover +" "+ style.lessonMobile}
+      className={style.lessonHover + " " + style.lessonMobile}
       onClick={() => {
         window.scrollTo(0, 0);
         updateView();
@@ -64,7 +61,7 @@ export default function LessonInScroll({
           )}
         </div>
         <p className="mx-4 m-0 p-0">{lesson.name} <br /> <span className={style.infoLessonMobile}>{lesson.info}</span></p>
-      
+
       </div>
     </div>
   );

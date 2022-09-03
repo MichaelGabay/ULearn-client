@@ -39,12 +39,12 @@ const ShowCourse = () => {
   const [lesson, setLesson] = useState({});
   const [itemDragg, setItemDragg] = useState(-1);
   const [itemOver, setItemOver] = useState(-1);
-  const [isDownOrUp,setIsDownOrUp]=useState(false)
+  const [isDownOrUp, setIsDownOrUp] = useState(false)
   let sy;
   useEffect(() => {
     getCourseData(query.get("shortId"));
   }, []);
-
+  // get course information
   const getCourseData = async (shortId) => {
     let { data } = await apiGet(GET_COURSE + `?shortId=${shortId}`);
     setLessons(data.lessons);

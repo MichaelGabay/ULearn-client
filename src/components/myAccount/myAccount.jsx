@@ -20,17 +20,33 @@ const MyAccount = () => {
     useEffect(() => {
         getMyInfoAcount()
     }, [])
+    // get user acoount information
     const getMyInfoAcount = async () => {
         let { data } = await apiGet(GET_USER_INFO_ROUTE)
         setLoading(false)
         delete data.myLearning;
         setForm({ firstName: data?.fullName?.firstName, lastName: data?.fullName?.lastName, phone: data?.phone, email: data?.email, imgProfile: data?.imgProfile })
     }
+    const onSubmit = async e => {
+        e.preventDefault()
+        if (errors.firstName || errors.lastName || errors.email) {
+            return
+        }
+        setLoading(true)
+        let url = "";
+        if (profileImagFile) {
+            url = await uploadImage()
+        }
+        updateMyInfo(url)
+
+    }
+    // validation form
     useEffect(() => {
         if (form.email) {
             validate()
         }
     }, [form])
+    // validation
     const validate = () => {
         let errorObj = {};
         if (!form.firstName.length) {
@@ -53,19 +69,7 @@ const MyAccount = () => {
         }
         setErrors(errorObj)
     }
-    const onSubmit = async e => {
-        e.preventDefault()
-        if (errors.firstName || errors.lastName || errors.email) {
-            return
-        }
-        setLoading(true)
-        let url = "";
-        if (profileImagFile) {
-            url = await uploadImage()
-        }
-        updateMyInfo(url)
-
-    }
+    // doing apdate request
     const updateMyInfo = async (url) => {
         let object = {
             fullName: {
@@ -92,6 +96,7 @@ const MyAccount = () => {
         getMyInfoAcount()
         setLoading(false)
     }
+    // uploading image
     const uploadImage = async () => {
         const formData = new FormData();
         formData.append("file", profileImagFile);
@@ -154,7 +159,7 @@ const MyAccount = () => {
                                     textColor="white"
                                     backgroundColor="green"
                                 />
-                                <Button onClick={() => {setForm({ imgProfile:"" });setProfileImagFile(false)}} className='mt-2' variant="contained" color="error" sx={{ width: '30%', fontSize: '1.1em' }}>מחק תמונה</Button>
+                                <Button onClick={() => { setForm({ imgProfile: "" }); setProfileImagFile(false) }} className='mt-2' variant="contained" color="error" sx={{ width: '30%', fontSize: '1.1em' }}>מחק תמונה</Button>
 
                             </div>
                             <hr />

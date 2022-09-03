@@ -1,10 +1,6 @@
 import {
   Box,
   Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
   CircularProgress,
   Container,
   createTheme,
@@ -18,7 +14,6 @@ import { blueGrey, cyan, grey, lightGreen, red, yellow } from "@mui/material/col
 import React, { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
-  GET_CATEGORIES_ROUTE,
   GET_COURSES_ROUTE,
   GET_MY_LERNING_ROUTE,
   GET_THE_HOT_COURSE_ROUTE,
@@ -26,8 +21,7 @@ import {
 } from "../shared/constant/url";
 import { apiGet } from "../shared/services/services";
 import CourseBox from "./course/courseBox";
-import { useDispatch, useSelector } from "react-redux";
-import { setIsCartOpen } from "../shared/redux/features/cartSlice";
+import { useSelector } from "react-redux";
 import { SwiperSlideX } from "../shared/components/swiper/swiperSlide";
 import { FaSearch, FaUndo } from 'react-icons/fa'
 const custom = createTheme({
@@ -62,13 +56,9 @@ const Home = () => {
   const [myLearning, setMyLearning] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchLoading, setSearchLoading] = useState(false);
-  // Check if the media query is true
   const { user } = useSelector((store) => store.userReducer);
   const nav = useNavigate();
-  useEffect(() => {
 
-    getCourses();
-  }, [query]);
 
   //listen to media query js
   useEffect(() => {
@@ -90,7 +80,7 @@ const Home = () => {
     const { data } = await apiGet(GET_MY_LERNING_ROUTE);
     setMyLearning(data);
   };
-
+  // get courses for home page or for search request
   const getCourses = async () => {
     if (!query.get("search")) {
       setSearching(false);
@@ -112,10 +102,14 @@ const Home = () => {
     }
     setLoading(false)
   };
+  // searching course
   const searchCourse = () => {
     if (search.length) nav("?search=" + search);
   };
-
+  // searching when the query changes
+  useEffect(() => {
+    getCourses();
+  }, [query]);
   const reset = () => {
     setSearch("");
     nav("/");
@@ -185,11 +179,7 @@ const Home = () => {
                     reset();
                     e.stopPropagation();
                   }}
-
                 />
-
-
-
               </div>
             </Container>
             {searching ? (
@@ -223,7 +213,6 @@ const Home = () => {
                     </Box>
                   )}
                 </Container>
-
               </>
             ) : (
               <Container maxWidth={"lg"}>
@@ -281,7 +270,6 @@ const Home = () => {
                     </div>
                   </div>
                 )}
-
                 {courses?.map(((item, i) => (
                   <Box key={i} sx={{ direction: "rtl" }} paddingY={5}>
                     <Typography variant="h4" gutterBottom>

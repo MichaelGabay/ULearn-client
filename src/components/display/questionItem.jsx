@@ -10,19 +10,15 @@ const QuestionItem = ({
   item,
   showCommentsQ,
   setQuestionWhoClickd,
-  userId, course,setCourse,lessonIndex
+  userId, course, setCourse, lessonIndex
 }) => {
   const [qurey] = useSearchParams()
+  // delete question from lesson
   const deleteQ = async () => {
     let url = DELETE_QUESTION_FROM_LESSON + `?courseShortId=${qurey.get('shortId')}&lessonId=${course.lessons[lessonIndex]._id}&QId=${item._id}`
     const { data } = await apiDelete(url);
-    let courseObj= {...course}
-    courseObj.lessons[lessonIndex].FAQ=courseObj.lessons[lessonIndex].FAQ.filter(element=>element._id!=item._id)
-    // course.lessons.forEach((e) => {
-    //   if (e._id == lessonId) {
-    //     e.FAQ= e.FAQ.filter(e=>e._id!=item._id)
-    //   }
-    // });
+    let courseObj = { ...course }
+    courseObj.lessons[lessonIndex].FAQ = courseObj.lessons[lessonIndex].FAQ.filter(element => element._id != item._id)
     setCourse(courseObj)
   };
   return (
@@ -34,7 +30,7 @@ const QuestionItem = ({
         <div dir="rtl" className="mb-3 ">
           <div className="d-flex justify-content-between flex-column ">
             <div className="d-flex align-items-center">
-              <Avatar  sx={{ width: "auto", padding:"2%" }}>
+              <Avatar sx={{ width: "auto", padding: "2%" }}>
                 {item?.Q.name}
               </Avatar>
               <p

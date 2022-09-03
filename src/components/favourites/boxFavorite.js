@@ -1,25 +1,19 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { indigo, red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { FaArrowAltCircleUp } from "react-icons/fa";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useDispatch, useSelector } from "react-redux";
 import { addToWishList } from "../../shared/redux/features/wishListSlice";
 import { useNavigate } from "react-router-dom";
-import { addToMyCart } from "../../shared/redux/features/cartSlice";
 import ReactWhatsapp from "react-whatsapp";
 
 const ExpandMore = styled((props) => {
@@ -42,6 +36,7 @@ export default function BoxFavorite({ course }) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  // when user wants to go to the course
   const sendToCourse = () => {
     if (
       user?.myLearning.find(
@@ -53,10 +48,7 @@ export default function BoxFavorite({ course }) {
       nav(`/coursePage?shortId=${course.short_id}`);
     }
   };
-  const addToCart = async () => {
-    dispatch(addToMyCart({ shortId: course.short_id }));
-  };
-
+ 
   return (
     <>
       <Card elevation={12} sx={{ maxWidth: "100%" }}>
@@ -93,17 +85,6 @@ export default function BoxFavorite({ course }) {
 "
             />
           </IconButton>
-          {!user?.myLearning.find(
-            (element) => element.ShortIdCourse == course.short_id
-          ) && (
-              <IconButton
-                title="Add to cart"
-                onClick={() => addToCart()}
-                aria-label="Add to cart"
-              >
-                <LocalMallIcon />
-              </IconButton>
-            )}
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}

@@ -23,7 +23,7 @@ const CommentsQQ = ({
     const { user } = useSelector((store) => store.userReducer);
     const [query] = useSearchParams()
     const [qObj, setQbj] = useState();
-
+    // update view whith time in comments format
     useEffect(() => {
         const questionObj = JSON.parse(JSON.stringify(questionWhoClickd));
         questionObj.answerAr.map((item) => {
@@ -34,7 +34,7 @@ const CommentsQQ = ({
         }
         setQbj(questionObj);
     }, [questionWhoClickd]);
-
+    // on submiting
     const submit = () => {
         let validObj = {};
         if (!form.data) {
@@ -46,6 +46,7 @@ const CommentsQQ = ({
         if (validObj.data) return;
         addAnsswer();
     };
+    // doing add request
     const addAnsswer = async () => {
         let url =
             ADD_ANSSWER_ROUTE +
@@ -64,6 +65,7 @@ const CommentsQQ = ({
             setForm({ data: "" });
         }
     };
+    // doing delete request
     const deleteAnswer = async (item) => {
         let url = DELETE_COMMENT_FROM_QUESTION + `?courseShortId=${query.get("shortId")}&lessonId=${course.lessons[lessonIndex]._id}&QId=${questionWhoClickd._id}&AId=${item._id}`
         let { data } = await apiDelete(url);
@@ -101,7 +103,7 @@ const CommentsQQ = ({
                                 <div className="d-flex justify-content-between flex-column">
                                     <div className="d-flex align-items-center">
                                         <Avatar sx={{ width: "auto", padding: "5px 10px" }}>
-                                        {qObj.Q.name}
+                                            {qObj.Q.name}
                                         </Avatar>
                                         <h6 className="mx-3 my-0 p-0">{questionWhoClickd.Q.title}</h6>
                                     </div>

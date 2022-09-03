@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import style from "./showCourse.module.css";
-import { blueGrey, grey, lightGreen, lime, red } from "@mui/material/colors";
+import { blueGrey, grey, lime, red } from "@mui/material/colors";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 import { ReactFileInputCustom } from "react-file-input-custom";

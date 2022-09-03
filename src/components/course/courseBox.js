@@ -1,13 +1,11 @@
 import {
   Button,
-  ButtonGroup,
   Card,
   CardActionArea,
   CardContent,
   CardMedia,
   Typography,
 } from "@mui/material";
-import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +22,7 @@ const CourseBox = ({ course }) => {
   const [isVerify, setIsVerify] = useState(false);
 
   useEffect(() => {
+    // doing validation if user allowed to go to display
     if (
       user?.myLearning.find((item) => item.ShortIdCourse == course.short_id)
     ) {

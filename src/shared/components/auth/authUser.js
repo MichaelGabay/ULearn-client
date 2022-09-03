@@ -6,22 +6,17 @@ import { apiGet } from '../../services/services'
 
 const AuthUser = () => {
     const nav = useNavigate()
-    
-    useEffect(()=>{
-        checkToken()
-    },[])
 
-    const checkToken = async() =>{
-        const {data} = await apiGet(CHECK_TOKEN_ROUTE)
-        if(!data.status){
+    useEffect(() => {
+        checkToken()
+    }, [])
+
+    const checkToken = async () => {
+        const { data } = await apiGet(CHECK_TOKEN_ROUTE)
+        if (!data.status) {
             nav('/login')
-            
         }
     }
-  return (
-   <>
-   </>
-  )
 }
 
 export default AuthUser

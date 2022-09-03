@@ -13,6 +13,16 @@ export default function AddQ({  onBackToQClick,course,lessonIndex }) {
     title: "",
     data: "",
   });
+// on submiting
+  const onSubmit = (e) => {
+    e.preventDefault();
+    validate();
+    if (errorObj.title) {
+      return;
+    }
+    AddQuestion();
+  };
+// doing validation
   const validate = () => {
     if (form.title.length < 5) {
       errorObj.title = "שאלה חייבת לכלול לפחות 5 תווים";
@@ -22,15 +32,7 @@ export default function AddQ({  onBackToQClick,course,lessonIndex }) {
     }
     setErrors(errorObj);
   };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    validate();
-    if (errorObj.title) {
-      return;
-    }
-    AddQuestion();
-  };
+  // doing add request
   const AddQuestion = async () => {
     let obj = {...form}
     obj.date_created = (new Date).getTime()
