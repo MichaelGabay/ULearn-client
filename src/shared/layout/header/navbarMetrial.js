@@ -88,6 +88,7 @@ const NavbarMatrial = () => {
   const { cart } = useSelector((store) => store.cartReducer);
   const { isCartOpen } = useSelector(store => store.cartReducer);
   const [firstTime, setFirstTime] = useState(false);
+  // updating store when the site loaded
   useEffect(() => {
     if (localStorage['token']) {
       dispatch(getUser())
@@ -96,14 +97,13 @@ const NavbarMatrial = () => {
       setIsAwait(false)
     }, 1000)
   }, [])
-
+  // geeting cart and favourites
   useEffect(() => {
     if (user) {
       dispatch(getMyCart())
       dispatch(getWishList())
     }
   }, [user])
-
   const nav = useNavigate()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
