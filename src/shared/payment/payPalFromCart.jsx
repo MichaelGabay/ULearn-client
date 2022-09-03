@@ -1,9 +1,10 @@
 import React, { useRef } from 'react'
 import { useEffect } from 'react';
+import style from "./payPal.module.css"
 const PayPalFromCart = ({ price, buyCourse, name, short_id, setIsCheckOut }) => {
-    console.log(name)
     const paypal = useRef();
     useEffect(() => {
+        console.log("paypal from cart")
         window.paypal.Buttons({
             createOrder: (data, actions, err) => {
                 return actions.order.create({

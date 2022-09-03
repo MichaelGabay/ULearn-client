@@ -28,6 +28,7 @@ export default function CoursePage() {
   useEffect(() => {
     window.scrollTo(0, 0);
     getCourseProperties();
+    console.log("run")
   }, []);
   const getCourseProperties = async () => {
     try {
