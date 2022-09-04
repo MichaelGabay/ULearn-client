@@ -12,6 +12,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { apiDelete } from "../../shared/services/services";
 import { Button } from "@mui/material";
+import noImagCoursePic from "../../assets/images/coursePage/noImageCourse.webp"
 const custom = createTheme({
   palette: {
     primary: amber,
@@ -64,10 +65,15 @@ export const BoxCourse = ({ course, render }) => {
         </ThemeProvider>
       </div>
       <div className={` col-lg-4 col-md-6 ${style.imgWidth}`}>
-        <div
+        {course.img_url ? <div
           style={{ backgroundImage: `url(${course.img_url})` }}
           className={`${style.imgCourse}`}
-        ></div>
+        ></div> :
+          <div
+            style={{ backgroundImage: `url(${noImagCoursePic})`,backgroundPosition:"top" }}
+            className={`${style.imgCourse}`}
+          ></div>
+        }
       </div>
     </div>
   );

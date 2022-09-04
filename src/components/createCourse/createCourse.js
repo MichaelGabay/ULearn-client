@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import style from "./createCourse.module.css";
 import {
   ADD_COURSE_ROUTE,
+  BUY_COURSE_ROUTE,
   GET_CATEGORIES_ROUTE,
 } from "../../shared/constant/url";
 import { apiGet, apiPost } from "../../shared/services/services";
@@ -14,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, CircularProgress } from "@mui/material";
 import AuthUser from "../../shared/components/auth/authUser";
+import { useDispatch } from "react-redux";
+import { getUser } from "../../shared/redux/features/userSlice";
 
 let categoryShortId;
 const CreateCourse = () => {
@@ -21,6 +24,7 @@ const CreateCourse = () => {
   const [courseImagFile, setCourseImagFile] = useState(false);
   const [loading, setLoading] = useState(false);
   const nav = useNavigate();
+  const dispatch = useDispatch();
   let {
     register,
     handleSubmit,
@@ -73,7 +77,10 @@ const CreateCourse = () => {
   //doing create request
   const createCourse = async (course) => {
     try {
-      await apiPost(ADD_COURSE_ROUTE, course);
+      let { data } = await apiPost(ADD_COURSE_ROUTE, course);
+      let resp = await apiPost(BUY_COURSE_ROUTE + `?shortId=${data.short_id}`)
+      if (resp.status == 200)
+        dispatch(getUser())
       nav("/myCourses");
     } catch (err) {
       console.log(err);

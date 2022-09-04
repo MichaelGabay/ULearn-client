@@ -13,6 +13,8 @@ import { FaArrowAltCircleUp } from "react-icons/fa";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { addToWishList } from "../../shared/redux/features/wishListSlice";
 import style from "./course.module.css"
+import noImagCoursePic from "../../assets/images/coursePage/noImageCourse.webp"
+
 
 const CourseBox = ({ course }) => {
   const nav = useNavigate();
@@ -45,7 +47,7 @@ const CourseBox = ({ course }) => {
         <CardMedia
           component="img"
           height="140"
-          image={course.img_url}
+          image={course.img_url?course.img_url:noImagCoursePic}
           alt={course.name}
         />
         <CardContent sx={{ textAlign: 'center' }}>

@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToWishList } from "../../shared/redux/features/wishListSlice";
 import { useNavigate } from "react-router-dom";
 import ReactWhatsapp from "react-whatsapp";
+import noImagCoursePic from "../../assets/images/coursePage/noImageCourse.webp"
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -48,14 +49,14 @@ export default function BoxFavorite({ course }) {
       nav(`/coursePage?shortId=${course.short_id}`);
     }
   };
- 
+
   return (
     <>
       <Card elevation={12} sx={{ maxWidth: "100%" }}>
         <CardMedia
           component="img"
           height="150px"
-          image={course.img_url}
+          image={course.img_url ? course.img_url : noImagCoursePic}
           alt="Paella dish"
         />
         <CardContent sx={{ height: "40px" }}>
@@ -72,7 +73,7 @@ export default function BoxFavorite({ course }) {
           >
             <FavoriteIcon color="error" />
           </IconButton>
-          <ReactWhatsapp style={{border:"none",background:"none"}} number="972585236376" message={`http://localhost:3000/coursePage?shortId=${course.short_id}`}>
+          <ReactWhatsapp style={{ border: "none", background: "none" }} number="972585236376" message={`http://localhost:3000/coursePage?shortId=${course.short_id}`}>
             <IconButton aria-label="share">
               <ShareIcon
                 sx={{ color: "#283593" }}

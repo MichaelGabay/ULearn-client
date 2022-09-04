@@ -30,7 +30,7 @@ const DisplayCourse = () => {
   let shortId = query.get("shortId");
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    user && getCourse();
+    user && getCourse()&&window.scrollTo(0,0);
   }, [user]);
   // get the course lessons
   const getCourse = async () => {
@@ -56,8 +56,8 @@ const DisplayCourse = () => {
     let myLearnCourse = user.myLearning.find(
       (item) => item.ShortIdCourse == shortId
     );
-    setViews(myLearnCourse.lessonsViewsId);
-    if (myLearnCourse.lastLessonViews) {
+    setViews(myLearnCourse?.lessonsViewsId);
+    if (myLearnCourse?.lastLessonViews) {
       data.lessons.forEach((item, i) => {
         if (item.link == myLearnCourse.lastLessonViews) {
           firstIndex = i;

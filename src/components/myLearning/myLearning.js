@@ -6,6 +6,7 @@ import style from "../myCourses/myCourses.module.css"
 import { Button, CircularProgress, createTheme, ThemeProvider } from "@mui/material";
 import { amber, blue, grey, lime, pink, red } from '@mui/material/colors';
 import { useNavigate } from "react-router-dom";
+import noImagCoursePic from "../../assets/images/coursePage/noImageCourse.webp"
 
 
 export default function MyLearning() {
@@ -66,7 +67,7 @@ export default function MyLearning() {
               </div>
               <div className={` col-lg-4 col-md-6 ${style.imgWidth}`}>
                 <div
-                  style={{ backgroundImage: `url(${item.img_url})` }}
+                  style={{ backgroundImage:item.img_url? `url(${item.img_url})`:`url(${noImagCoursePic})` }}
                   className={`${style.imgCourse}`}
                 ></div>
               </div>
