@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button, CircularProgress } from "@mui/material";
 import AuthUser from "../../shared/components/auth/authUser";
+import { CLOUDINERY_URL, CLOUDINERY_USER } from "../../config/config";
 
 let categoryShortId;
 const CreateCourse = () => {
@@ -62,9 +63,9 @@ const CreateCourse = () => {
   const uploadImage = async () => {
     const formData = new FormData();
     formData.append("file", courseImagFile);
-    formData.append("upload_preset", "miki101");
+    formData.append("upload_preset", CLOUDINERY_USER);
     let resp = await axios.post(
-      "https://api.cloudinary.com/v1_1/michael-gabay/image/upload",
+      CLOUDINERY_URL,
       formData
     );
     return resp.data.url;
