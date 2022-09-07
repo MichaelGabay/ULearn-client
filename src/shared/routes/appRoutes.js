@@ -8,7 +8,7 @@ import ThankYouOrder from '../../components/course/thankYouOrder';
 import CreateCourse from '../../components/createCourse/createCourse';
 import DisplayCourse from '../../components/display/displayCourse';
 import Favourites from '../../components/favourites/favourites';
-import Home from '../../components/home';
+import Home from '../../components/Home';
 import MyAccount from '../../components/myAccount/myAccount';
 import ShowCourse from '../../components/myCourses/editCourse/showCourse';
 import MyCourses from '../../components/myCourses/myCourses';
