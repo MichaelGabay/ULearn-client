@@ -9,6 +9,7 @@ import useSimpleForm from '../../shared/hooks/useForm';
 import { apiGet, apiPut } from '../../shared/services/services';
 import { GET_USER_INFO_ROUTE, UPDAT_MY_INFO_ACOUNT_ROUTE } from '../../shared/constant/url';
 import axios from 'axios';
+import { CLOUDINERY_URL, CLOUDINERY_USER } from '../../config/config';
 const MyAccount = () => {
     const regEmail = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i)
     const nav = useNavigate()
@@ -100,8 +101,8 @@ const MyAccount = () => {
     const uploadImage = async () => {
         const formData = new FormData();
         formData.append("file", profileImagFile);
-        formData.append("upload_preset", "miki101")
-        let resp = await axios.post("https://api.cloudinary.com/v1_1/michael-gabay/image/upload", formData)
+        formData.append("upload_preset", CLOUDINERY_USER)
+        let resp = await axios.post(CLOUDINERY_URL, formData)
         return resp.data.url
     }
     return (

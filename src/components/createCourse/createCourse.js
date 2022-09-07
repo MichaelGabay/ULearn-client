@@ -17,7 +17,7 @@ import { Button, CircularProgress } from "@mui/material";
 import AuthUser from "../../shared/components/auth/authUser";
 import { useDispatch } from "react-redux";
 import { getUser } from "../../shared/redux/features/userSlice";
-
+import { CLOUDINERY_USER, CLOUDINERY_URL } from "../../config/config.js"
 let categoryShortId;
 const CreateCourse = () => {
   const [categoriesOptions, setCategoriesOptions] = useState([]);
@@ -66,9 +66,9 @@ const CreateCourse = () => {
   const uploadImage = async () => {
     const formData = new FormData();
     formData.append("file", courseImagFile);
-    formData.append("upload_preset", "miki101");
+    formData.append("upload_preset", CLOUDINERY_USER);
     let resp = await axios.post(
-      "https://api.cloudinary.com/v1_1/michael-gabay/image/upload",
+      CLOUDINERY_URL,
       formData
     );
     return resp.data.url;

@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import { useEffect } from 'react';
-import style from "./payPal.module.css"
 const PayPal = ({ price, buyCourse, name }) => {
     const paypal = useRef();
     useEffect(() => {
