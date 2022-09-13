@@ -8,7 +8,6 @@ import { amber, blue, grey, lime, pink, red } from '@mui/material/colors';
 import { useNavigate } from "react-router-dom";
 import noImagCoursePic from "../../assets/images/coursePage/noImageCourse.webp"
 
-
 export default function MyLearning() {
   const nav = useNavigate();
   const custom = createTheme({
@@ -67,7 +66,7 @@ export default function MyLearning() {
               </div>
               <div className={` col-lg-4 col-md-6 ${style.imgWidth}`}>
                 <div
-                  style={{ backgroundImage:item.img_url? `url(${item.img_url})`:`url(${noImagCoursePic})` }}
+                  style={{ backgroundImage: item.img_url ? `url(${item.img_url})` : `url(${noImagCoursePic})` }}
                   className={`${style.imgCourse}`}
                 ></div>
               </div>
