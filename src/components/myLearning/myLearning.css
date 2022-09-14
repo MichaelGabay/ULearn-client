@@ -13,6 +13,7 @@
 .myLearning-course {
     direction: rtl;
     position: relative;
+    min-height: 250px;
 }
 
 
@@ -57,9 +58,19 @@
 }
 
 .myLearning-progres {
-    height: 4px;
-    background: silver;
+    height: 2px;
+    background:rgb(230, 228, 228);
     direction: ltr;
+}
+.myLearning-creator{
+    padding-bottom:8px ;
+    color: rgb(128, 124, 124);
+}
+
+
+.myLearning-rating.MuiBox-root .MuiRating-root .MuiRating-icon{
+    color: rgb(236, 160, 7);
+    font-size: 20px;
 }
 
 @keyframes showPlay {
