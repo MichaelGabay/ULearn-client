@@ -116,7 +116,7 @@ const Home = () => {
   };
 
   return (
-    <div className="pt-4">
+    <div >
       {loading ? (
         <CircularProgress
           sx={{

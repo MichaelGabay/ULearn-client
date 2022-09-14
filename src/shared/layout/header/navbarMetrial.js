@@ -126,7 +126,7 @@ const NavbarMatrial = () => {
   return (
     <div onClick={() => dispatch(setIsCartOpen(false))}>
       <ThemeProvider theme={custom}>
-        <AppBar position="fixed" sx={{ padding: '3px 0', direction: 'rtl' }} color='secondary' >
+        <AppBar  sx={{ padding: '3px 0', direction: 'rtl',position:"unset" }} color='secondary' >
           <Container maxWidth="xl">
             <Toolbar disableGutters >
               <Typography

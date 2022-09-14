@@ -57,7 +57,6 @@ export default function CoursePage() {
   const addToCart = async () => {
     dispatch(addToMyCart({ shortId: query.get("shortId") }));
   };
-
   if (user && cart && wishList) {
     return (
       <div style={{ minHeight: "90vh" }} className="container d-flex align-items-center">
@@ -73,7 +72,7 @@ export default function CoursePage() {
                 <h4 >אודות הקורס:</h4>
                 <p style={{ whiteSpace: "pre-wrap" }}>{course.info}</p>
                 <h4>{course.price == 0 ? `חינם` : `מחיר: ₪${course.price}`}</h4>
-                <h4>{`יוצר הקורס: ${course?.creatorName.fullName.lastName} ${course?.creatorName.fullName.firstName}`}</h4>
+                <h4>{`יוצר הקורס: ${course?.creator_id.fullName.firstName} ${course?.creator_id.fullName.lastName}`}</h4>
                 <Box sx={{ margin: "0 auto" }} display={"flex"} width={"40%"} flexDirection={"column"}>
                   {cart &&
                     !cart?.find((item) => item.short_id == query.get("shortId")) ? (

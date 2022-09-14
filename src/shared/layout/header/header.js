@@ -5,7 +5,7 @@ import NavbarMatrial from "./navbarMetrial";
 const Header = () => {
   return (
     <div>
-      <header className={style.header} >
+      <header  >
         <NavbarMatrial  />
       </header>
     </div>

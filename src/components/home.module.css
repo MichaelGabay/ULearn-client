@@ -2,7 +2,6 @@
     background-image: url("../assets/images/imgHome/strip.jpg");
     background-size: cover;
     background-position: center center;
-    position: relative;
     bottom: 20px;
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);

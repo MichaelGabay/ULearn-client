@@ -7,12 +7,12 @@ import Header from './header/header'
 
 
 const Layout = () => {
-  const dispatch=useDispatch()
+  const dispatch = useDispatch()
 
   return (
     <>
       <Header />
-      <div  style={{minHeight:'94vh'}} onClick={() => dispatch(setIsCartOpen(false))}>
+      <div style={{ minHeight: '94vh' }} onClick={() => dispatch(setIsCartOpen(false))}>
         <Outlet />
       </div>
       <Footer />

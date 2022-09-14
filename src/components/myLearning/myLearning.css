@@ -1,0 +1,88 @@
+.MuiContainer-root.myLearning-container {
+    max-width: 960px;
+    padding-top: 50px;
+}
+
+.myLearning-more-icon {
+    background-color: white;
+    padding: 3px 8px 5px 8px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.myLearning-course {
+    direction: rtl;
+    position: relative;
+}
+
+
+.myLearning-more-icon:hover {
+    background-color: rgb(209, 209, 209);
+}
+
+.myLearning-playIcon {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.596);
+    width: 100%;
+    height: 120px;
+    top: 0;
+    justify-content: center;
+    align-items: center;
+    display: none;
+
+}
+
+.myLearning-course:hover .myLearning-playIcon {
+    display: flex;
+    animation-name: showPlay;
+    animation-duration: 400ms;
+}
+
+
+
+.myLearning-imageCourse {
+    background-size: cover;
+    background-position: center;
+    height: 120px;
+}
+
+
+
+.myLearning-playIcon-self {
+    border-radius: 50%;
+    cursor: pointer;
+    animation-name: showIconPlay;
+    animation-duration: 200ms;
+    width: 50px;
+}
+
+.myLearning-progres {
+    height: 4px;
+    background: silver;
+    direction: ltr;
+}
+
+@keyframes showPlay {
+    0% {
+        background: transparent;
+        display: none;
+
+    }
+
+    100% {
+        background: rgba(0, 0, 0, 0.596);
+    }
+}
+
+@keyframes showIconPlay {
+    0% {
+        width: 0px;
+        opacity: 0.0;
+    }
+
+    100% {
+        width: 50px;
+        opacity: 1;
+
+    }
+}

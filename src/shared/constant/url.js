@@ -1,4 +1,4 @@
-export const API_URL = "https://udemy-israel.herokuapp.com/";
+export const API_URL = "https://ulearnil.herokuapp.com/";
 
 // !URL SERVER ROUTES
 
