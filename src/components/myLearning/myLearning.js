@@ -8,24 +8,25 @@ import { useNavigate } from "react-router-dom";
 import CourseMyLearning from './courseMyLearning';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '../../shared/redux/features/userSlice';
+import { getMyLearning } from '../../shared/redux/features/myLearningSlice';
 
 export default function MyLearning() {
   const nav = useNavigate();
   const dispatch = useDispatch()
   const { user } = useSelector(store => store.userReducer)
-  const [myLearning, setMyLearning] = useState([]);
+  const { wishList } = useSelector((store) => store.wishListReducer);
+  const { myLearning } = useSelector(state => state.myLearningReducer)
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    getMyLearning();
+    getMyLearningCourses()
     window.scrollTo(0, 0);
     dispatch(getUser())
   }, []);
-  //get my learning Courses
-  const getMyLearning = async () => {
-    const { data } = await apiGet(GET_MY_LERNING_ROUTE);
-    setMyLearning(data);
+
+  const getMyLearningCourses = async () => {
+    await dispatch(getMyLearning());
     setLoading(false)
-  };
+  }
 
   return (
     <Container className="myLearning-container">
@@ -35,7 +36,7 @@ export default function MyLearning() {
             size={50}
           />
           : <>
-            {myLearning?.map((course) => <CourseMyLearning key={course._id} myLearning={user?.myLearning} course={course} />)}
+            {myLearning?.map((course) => <CourseMyLearning key={course._id} myLearning={user?.myLearning} course={course} wishList={wishList} />)}
           </>}
 
       </Grid>

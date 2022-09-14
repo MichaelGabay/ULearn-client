@@ -59,18 +59,83 @@
 
 .myLearning-progres {
     height: 2px;
-    background:rgb(230, 228, 228);
+    background: rgb(230, 228, 228);
     direction: ltr;
 }
-.myLearning-creator{
-    padding-bottom:8px ;
+
+.myLearning-creator {
+    padding-bottom: 8px;
     color: rgb(128, 124, 124);
 }
 
 
-.myLearning-rating.MuiBox-root .MuiRating-root .MuiRating-icon{
+.myLearning-rating.MuiBox-root .MuiRating-root .MuiRating-icon {
     color: rgb(236, 160, 7);
     font-size: 20px;
+}
+
+.myLearning-option.MuiTypography-root {
+    font-size: 14px;
+}
+
+.myLearning-option.MuiTypography-root:hover {
+    color: blueviolet;
+    cursor: pointer;
+}
+
+.myLearning-shareIcon {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.myLearning-green {
+    color: green;
+}
+
+.myLearning-blue {
+    color: rgb(75, 75, 213);
+    padding: -2px;
+}
+
+.myLearning-lightBlue {
+    color: rgb(3, 166, 220);
+}
+
+.myLearning-strongBlue {
+    color: rgb(3, 166, 220);
+}
+
+.myLearning-red {
+    color: red;
+}
+
+.myLearning-mor-paper {
+    animation: showPaper 200ms;
+}
+
+.myLearning-modal-btn {
+    width: 20%;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.904);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.myLearning-modal-btn:hover {
+    background: black;
+}
+
+.myLearning-modal-link {
+    width: 80%;
+    height: 50px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    outline: none;
 }
 
 @keyframes showPlay {
@@ -95,5 +160,15 @@
         width: 50px;
         opacity: 1;
 
+    }
+}
+
+@keyframes showPaper {
+    0% {
+        transform: scale(0.7);
+    }
+
+    100% {
+        transform: scale(1)
     }
 }

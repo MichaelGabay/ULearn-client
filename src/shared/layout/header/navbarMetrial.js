@@ -30,6 +30,7 @@ import { useEffect, useState } from 'react';
 import { getMyCart, setIsCartOpen } from '../../redux/features/cartSlice';
 import Cart from '../../../components/cart/cart';
 import { getWishList } from '../../redux/features/wishListSlice';
+import { closeMoreOpen } from '../../redux/features/myLearningSlice';
 const modalStyle = {
   position: 'absolute',
   top: '50%',
@@ -124,7 +125,7 @@ const NavbarMatrial = () => {
   };
 
   return (
-    <div onClick={() => dispatch(setIsCartOpen(false))}>
+    <div onClick={() => {dispatch(setIsCartOpen(false));dispatch(closeMoreOpen())}}>
       <ThemeProvider theme={custom}>
         <AppBar  sx={{ padding: '3px 0', direction: 'rtl',position:"unset" }} color='secondary' >
           <Container maxWidth="xl">
