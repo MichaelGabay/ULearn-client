@@ -1,4 +1,6 @@
+const localUrl="http://localhost:3001/";
 export const API_URL = "https://ulearnil.herokuapp.com/";
+// export const API_URL = localUrl;
 
 // !URL SERVER ROUTES
 
@@ -36,6 +38,9 @@ export const GET_USER_INFO_ROUTE = API_URL + "users/getMyInfoAcount";
 export const UPDAT_MY_INFO_ACOUNT_ROUTE = API_URL + "users/editMyInfoAcount";
 export const BUY_COURSE_ROUTE = API_URL + "users/buyOneCourse";
 export const UPDATE_VIEW_LESSON_TOGGLE_ROUTE = API_URL + "users/addOrRemoveViewing";
+export const ADD_RATING_ROUTE = API_URL + "users/addRating";
+export const DELETE_RATING_ROUTE = API_URL + "users/deleteRating";
+export const UPDAT_RATING_ROUTE = API_URL + "users/editRating";
 export const UPDATE_VIEW_LESSON_ROUTE= API_URL + "users/addViewing";
 export const GET_MY_LERNING_ROUTE = API_URL + "users/getMylearning";
 export const GET_MY_CART_ROUTE = API_URL + "users/getMyCart";

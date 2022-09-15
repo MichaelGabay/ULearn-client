@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { GET_USER_INFO_ROUTE } from "../../constant/url";
-import { apiGet } from "../../services/services";
+import { ADD_RATING_ROUTE, GET_USER_INFO_ROUTE } from "../../constant/url";
+import { apiGet, apiPost } from "../../services/services";
 
 export const getUser = createAsyncThunk(
     "user,getUser", async (dispatch, getState) => {
@@ -8,7 +8,11 @@ export const getUser = createAsyncThunk(
         return data
     }
 );
-
+export const addRating = createAsyncThunk(
+    "user,addRating", async ({ shortId, value }, getState) => {
+        await apiPost(ADD_RATING_ROUTE + `?coursShortId=${shortId}&rating=${value}`)
+    }
+);
 
 const userSlice = createSlice({
     name: "user",
@@ -39,6 +43,9 @@ const userSlice = createSlice({
     reducers: {
         logout: (state, action) => {
             state.user = null
+        },
+        updateAddRating: (state, action) => {
+            state.user.myLearning = action.payload;
         }
     }
 
@@ -48,6 +55,6 @@ const userSlice = createSlice({
 
 
 
-export const { logout } = userSlice.actions;
+export const { updateAddRating,logout } = userSlice.actions;
 
 export default userSlice.reducer;

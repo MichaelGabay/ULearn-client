@@ -23,7 +23,6 @@ export default function MyLearning() {
     await dispatch(getMyLearning());
     setLoading(false)
   }
-
   const loadingStyle = {
     position: "absolute",
     top: 0,
@@ -38,10 +37,8 @@ export default function MyLearning() {
   };
   return (
     <>
-
       <Container className="myLearning-container">
         <AuthUser />
-
         <Grid container spacing={2}>
           {loading && myLearning ?
             <Box sx={loadingStyle}>
@@ -49,7 +46,7 @@ export default function MyLearning() {
               />
             </Box>
             : <>
-              {myLearning?.map((course) => <CourseMyLearning key={course._id} myLearning={user?.myLearning} course={course} wishList={wishList} />)}
+              {myLearning?.map((course) => <CourseMyLearning key={course._id} course={course} wishList={wishList} />)}
             </>
           }
 

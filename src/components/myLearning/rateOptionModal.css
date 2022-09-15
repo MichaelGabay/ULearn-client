@@ -1,0 +1,21 @@
+.ratOptionModal-rating.MuiBox-root .MuiRating-root .MuiRating-icon {
+    padding-top: 20px;
+    color: rgb(236, 160, 7);
+}
+
+.ratOption-del-btn {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.ratOption-edit-btn {
+    background: rgba(0, 0, 0, 0.893);
+    color: white;
+    padding: 8px 12px;
+
+}
+
+.ratOption-edit-btn:hover {
+    background: black;
+    cursor: pointer;
+}

@@ -1,26 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Box, Typography, Rating, Paper, Modal } from "@mui/material"
+import { Grid, Box, Typography, Rating, Paper } from "@mui/material"
 import "./myLearning.css"
 import { FiMoreVertical } from "react-icons/fi"
 import { IoMdShareAlt } from "react-icons/io"
-import { AiFillStar, AiOutlineMail, AiOutlineClose } from "react-icons/ai"
-import { GrTwitter } from "react-icons/gr"
-import { BsWhatsapp, BsFacebook, BsTelegram } from "react-icons/bs"
+import { AiFillStar } from "react-icons/ai"
 import playPic from "../../assets/images/myLearning/playPic.png"
 import noImagCoursePic from "../../assets/images/coursePage/noImageCourse.webp"
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { updateMoreOpen } from '../../shared/redux/features/myLearningSlice'
 import { addToWishList } from '../../shared/redux/features/wishListSlice'
 import ShareModal from './shareModal'
-const CourseMyLearning = ({ course, myLearning, wishList }) => {
+import RateModal from './rateModal'
+import RateOptionModal from './rateOptionModal'
+const CourseMyLearning = ({ course, wishList }) => {
+    const { myLearning } = useSelector(state => state.myLearningReducer)
+    const { user } = useSelector(state => state.userReducer)
     const [progres, setProgres] = useState(0)
     const [openShareModal, setOpenShareModal] = useState(false)
+    const [openRateModal, setOpenRateModal] = useState(false);
+    const [openRateOptionModal, setOpenRateOptionModal] = useState(false)
+    const [isRateModalOpen, setIsRatemModalOpen] = useState(false)
+    const [isRateModalOptionOpen, setIsRatemModalOptionOpen] = useState(false)
+    const [rating, setRating] = useState(0);
+    const [textRate, setTextRate] = useState("הדירוג שלך")
     const nav = useNavigate()
     const dispatch = useDispatch()
-    useEffect(() => {
-        if (myLearning) updateProgres();
-    }, [myLearning])
+    // updating progres line
     const updateProgres = () => {
         let myLearningCourse = myLearning?.find(item => item.ShortIdCourse == course.short_id);
         if (course?.lessonLength) {
@@ -30,11 +36,27 @@ const CourseMyLearning = ({ course, myLearning, wishList }) => {
             }
         }
     }
+    // update raiting
+    const updateRating = () => {
+        const userCourse = user.myLearning.find(item => item.ShortIdCourse == course.short_id);
+        setRating(userCourse.rating)
+    }
+    // when clickd on more icon
     const openMore = event => {
         event.stopPropagation();
         dispatch(updateMoreOpen({ shortId: course.short_id }))
     }
-   
+    useEffect(() => {
+        if (myLearning) updateProgres();
+    }, [myLearning])
+    useEffect(() => {
+        updateRating()
+    }, [user])
+    // for deleting stats in modals
+    useEffect(() => {
+        if (!openRateModal) setIsRatemModalOpen(false);
+        if (!openRateOptionModal) setIsRatemModalOptionOpen(false)
+    }, [openRateModal, openRateOptionModal])
     return (
         <Grid item xl={3} md={3} sm={4} xs={6}>
             <Box className='myLearning-course'>
@@ -53,13 +75,21 @@ const CourseMyLearning = ({ course, myLearning, wishList }) => {
                 <Box className='myLearning-progres'>
                     <Box sx={{ width: progres, background: "purple", height: "2px" }}></Box>
                 </Box>
-                <Box sx={{ paddingTop: "4px", display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+                <Box sx={{ paddingTop: "4px", display: "flex", flexWrap: "wrap", justifyContent: "space-between", direction: "ltr" }}>
+
+                    {rating != 0 ?
+                        <Box onClick={() => { setIsRatemModalOptionOpen(true); setOpenRateOptionModal(true) }} onMouseLeave={() => setTextRate("הדירוג שלך")} onMouseOver={() => { setTextRate("ערוך דירוג") }} sx={{ textAlign: "start", cursor: "pointer" }} className='myLearning-rating'>
+                            <Rating precision={0.5} value={rating} readOnly />
+                            <Typography sx={{ margin: 0, paddingLeft: "4px" }} variant='subtitle2' component="h4">{textRate}</Typography>
+                        </Box> :
+                        <Box onClick={() => { setOpenRateModal(true); setIsRatemModalOpen(true) }} sx={{ textAlign: "start", cursor: "pointer" }} className='myLearning-rating'>
+                            <Rating precision={0.5} value={rating} readOnly />
+                            <Typography sx={{ margin: 0, paddingLeft: "4px" }} variant='subtitle2' component="h4">הוסף דירוג</Typography>
+                        </Box>
+                    }
+
                     <Box >
                         <Typography variant='subtitle2' component="h4">{progres ? `${progres} הושלמו` : "התחל קורס"}</Typography>
-                    </Box>
-                    <Box sx={{ textAlign: "end", cursor: "pointer" }} className='myLearning-rating'>
-                        <Rating readOnly />
-                        <Typography sx={{ margin: 0, paddingLeft: "4px" }} variant='subtitle2' component="h4">השאר דירוג</Typography>
                     </Box>
                 </Box>
                 {course.isMoreOpen &&
@@ -74,7 +104,9 @@ const CourseMyLearning = ({ course, myLearning, wishList }) => {
                     </Paper>
                 }
             </Box>
-         <ShareModal setOpenShareModal={setOpenShareModal} openShareModal={openShareModal} shortId={course.short_id}/>
+            <ShareModal setOpenShareModal={setOpenShareModal} openShareModal={openShareModal} shortId={course.short_id} />
+            {isRateModalOpen && <RateModal setOpenRateModal={setOpenRateModal} openRateModal={openRateModal} shortId={course.short_id} setIsRatemModalOpen={setIsRatemModalOpen} />}
+            {isRateModalOptionOpen && <RateOptionModal openRateOptionModal={openRateOptionModal} setOpenRateOptionModal={setOpenRateOptionModal} shortId={course.short_id} rating={rating} setIsRatemModalOptionOpen={setIsRatemModalOptionOpen} />}
         </Grid>
     )
 }

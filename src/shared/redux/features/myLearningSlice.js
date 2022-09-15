@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { GET_MY_LERNING_ROUTE } from "../../constant/url";
-import { apiGet } from "../../services/services";
+import { ADD_RATING_ROUTE, GET_MY_LERNING_ROUTE } from "../../constant/url";
+import { apiGet, apiPost } from "../../services/services";
 
 
 export const getMyLearning = createAsyncThunk(
@@ -11,6 +11,7 @@ export const getMyLearning = createAsyncThunk(
     }
 );
 
+
 const myLearningSlice = createSlice({
     name: "myLearning",
     initialState: {
@@ -20,6 +21,7 @@ const myLearningSlice = createSlice({
     ,
     extraReducers(builder) {
         builder
+            // geyMyLearning
             .addCase(getMyLearning.pending, (state, action) => {
                 state.status = "loading";
             })
@@ -33,10 +35,10 @@ const myLearningSlice = createSlice({
     reducers: {
         updateMoreOpen: (state, action) => {
             state.myLearning.forEach(item => {
-                if (item.short_id == action.payload.shortId){
-                    if(item.isMoreOpen==true)item.isMoreOpen = false;
+                if (item.short_id == action.payload.shortId) {
+                    if (item.isMoreOpen == true) item.isMoreOpen = false;
                     else item.isMoreOpen = true;
-                } 
+                }
                 else item.isMoreOpen = false
             })
         },
@@ -45,12 +47,13 @@ const myLearningSlice = createSlice({
                 item.isMoreOpen = false
             })
         },
+      
     }
 
 
 });
 
 
-export const { updateMoreOpen,closeMoreOpen } = myLearningSlice.actions;
+export const {updateMoreOpen, closeMoreOpen } = myLearningSlice.actions;
 
 export default myLearningSlice.reducer;

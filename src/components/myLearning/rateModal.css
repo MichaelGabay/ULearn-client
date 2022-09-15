@@ -1,0 +1,17 @@
+.rateModal-rating.MuiBox-root .MuiRating-root .MuiRating-icon {
+    color: rgb(236, 160, 7);
+    font-size: 50px;
+ padding-top: 10px;
+}
+
+.rateModel-saveBtn {
+    background-color: rgba(0, 0, 0, 0.879);
+    color: white;
+    padding: 8px 14px;
+    margin-top: 12px;
+}
+.rateModel-saveBtn:hover {
+    background-color: black;
+    cursor: pointer;
+
+}
