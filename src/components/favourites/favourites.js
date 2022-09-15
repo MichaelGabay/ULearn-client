@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Box,
   Button,
   CircularProgress,
   Container,
@@ -14,36 +15,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { amber, blue, grey, lime, pink, red } from "@mui/material/colors";
 import BoxFavorite from "./boxFavorite";
 import style from "./favorite.module.css";
+import { getWishList } from "../../shared/redux/features/wishListSlice";
 
 const Favourites = () => {
   const { wishList } = useSelector((store) => store.wishListReducer);
   const [loading, setLoading] = useState(true)
+  const dispatch = useDispatch()
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (wishList) {
-      setLoading(false)
-    }
-  }, [wishList])
-  const custom = createTheme({
-    palette: {
-      primary: amber,
-      secondary: {
-        main: pink["A200"],
-      },
-      error: {
-        main: red["A200"],
-      },
-      success: {
-        main: grey[900],
-      },
-      info: {
-        main: blue["500"],
-      },
-    },
-  });
-
+    getFavorites()
+  }, [])
+  const getFavorites = async () => {
+    await dispatch(getWishList())
+    setLoading(false)
+  }
+  const loadingStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: "100vh",
+    zIndex: "5",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  };
   return (
-    <ThemeProvider theme={custom}>
+    // <ThemeProvider theme={custom}>
+    <>
       <AuthUser />
       {!loading ?
         <div dir="rtl" className={`${style.container} py-5`}>
@@ -57,13 +57,17 @@ const Favourites = () => {
             </div>
           ) : (
             <div>
-            <h1 className="text-center">עדיין לא הוספת מועדפים</h1>
+              <h1 className="text-center">עדיין לא הוספת מועדפים</h1>
             </div>
           )}
         </div>
-        : <CircularProgress sx={{ position: 'absolute', right: '50%', left: '50%', top: '50%', bottom: '50%' }} size={50} />
+        : <Box sx={loadingStyle}>
+          <CircularProgress size={50}
+          />
+        </Box>
       }
-    </ThemeProvider>
+    </>
+    // </ThemeProvider>
   );
 };
 

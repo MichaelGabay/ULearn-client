@@ -10,7 +10,7 @@ import { Tab, TabPanel, TabList, Tabs } from "react-tabs";
 import "./reactTabs.css";
 import AuthUser from "../../shared/components/auth/authUser";
 import Questions from "./questions";
-import { CircularProgress } from "@mui/material";
+import { Box, CircularProgress } from "@mui/material";
 import AddQ from "./addQ";
 import AboutPageCourse from "./aboutPageCourse";
 import CommentsQQ from "./commentsQQ";
@@ -25,12 +25,12 @@ const DisplayCourse = () => {
   const [isCommentsQ, setIsCommentsQ] = useState(false);
   const [questionWhoClickd, setQuestionWhoClickd] = useState({});
   const [lessonIndex, setLessonIndex] = useState(-1);
+  const [loading, setLoading] = useState(true);
   const nav = useNavigate();
   const { user } = useSelector((store) => store.userReducer);
   let shortId = query.get("shortId");
-  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    user && getCourse()&&window.scrollTo(0,0);
+    user && getCourse() && window.scrollTo(0, 0);
   }, [user]);
   // get the course lessons
   const getCourse = async () => {
@@ -83,19 +83,25 @@ const DisplayCourse = () => {
     setIsQ(false);
     setIsCommentsQ(true);
   };
+  const loadingStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    width: "100%",
+    height: "100vh",
+    zIndex: "5",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  };
   return (
     <div >
       {loading && (
-        <CircularProgress
-          sx={{
-            position: "absolute",
-            right: "50%",
-            left: "50%",
-            top: "50%",
-            bottom: "50%",
-          }}
-          size={50}
-        />
+        <Box sx={loadingStyle}>
+          <CircularProgress size={50}
+          />
+        </Box>
       )}
       {!loading && (
         <div >
